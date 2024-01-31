@@ -15,17 +15,17 @@ public class WebConfig implements WebMvcConfigurer {
     private final AuthorizationInterceptor authorizationInterceptor; // AuthorizationInterceptor가 @Component이므로 주입 가능
 
     // 회원가입, 약관과 같이 유저가 없어 인증 처리하지 않아도 되는 API => 인증에서 제외(exclude) 처리
-    private List<String> openApi = List.of(
+    private final List<String> openApi = List.of(
             "/open-api/**"
     );
 
-    private List<String> defaultExclude = List.of(
+    private final List<String> defaultExclude = List.of(
             "/",
             "/error",
             "favicon.ico"
     );
 
-    private List<String> swagger = List.of(
+    private final List<String> swagger = List.of(
             "/swagger-ui/html",
             "/swagger-ui/**",
             "/v3/api-docs/**"
