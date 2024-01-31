@@ -15,6 +15,6 @@ public enum UserErrorCode implements ErrorCodeIfs {
     ;
 
     private final Integer httpStatusCode;
-    private final Integer errorCode;
+    private final Integer errorCodeNumber;
     private final String description;
 }
