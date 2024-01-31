@@ -18,7 +18,7 @@ public class Result {
 
     public static Result createOkResult() {
         return Result.builder()
-                .resultCode(ErrorCode.OK.getErrorCode())
+                .resultCode(ErrorCode.OK.getErrorCodeNumber())
                 .resultMessage(ErrorCode.OK.getDescription())
                 .resultDescription("성공")
                 .build();
@@ -26,7 +26,7 @@ public class Result {
 
     public static Result createErrorResult(ErrorCodeIfs errorCodeIfs) {
         return Result.builder()
-                .resultCode(errorCodeIfs.getErrorCode())
+                .resultCode(errorCodeIfs.getErrorCodeNumber())
                 .resultMessage(errorCodeIfs.getDescription())
                 .resultDescription("에러 발생")
                 .build();
@@ -34,7 +34,7 @@ public class Result {
 
     public static Result createErrorResult(ErrorCodeIfs errorCodeIfs, Throwable tx) {
         return Result.builder()
-                .resultCode(errorCodeIfs.getErrorCode())
+                .resultCode(errorCodeIfs.getErrorCodeNumber())
                 .resultMessage(errorCodeIfs.getDescription())
                 .resultDescription(tx.getLocalizedMessage())
                 .build();
@@ -42,7 +42,7 @@ public class Result {
 
     public static Result createErrorResult(ErrorCodeIfs errorCodeIfs, String description) {
         return Result.builder()
-                .resultCode(errorCodeIfs.getErrorCode())
+                .resultCode(errorCodeIfs.getErrorCodeNumber())
                 .resultMessage(errorCodeIfs.getDescription())
                 .resultDescription(description)
                 .build();
