@@ -28,6 +28,7 @@ out/
 #*.yaml
 **/src/main/resources/
 api/src/main/resources/*
+application.yaml
 
 ### NetBeans ###
 /nbproject/private/
