@@ -34,6 +34,6 @@ public class AccountApiController {
             throw new ApiException(ErrorCode.INTERNAL_SERVER_ERROR, "account me 호출 시 에러 발생", e);
         }
 
-        return Api.OK(response);
+        return Api.ok(response);
     }
 }
