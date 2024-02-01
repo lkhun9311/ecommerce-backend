@@ -1,8 +1,10 @@
 package com.ecommerce.api.config.web;
 
 import com.ecommerce.api.interceptor.AuthorizationInterceptor;
+import com.ecommerce.api.resolver.UserSessionResolver;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -13,6 +15,7 @@ import java.util.List;
 public class WebConfig implements WebMvcConfigurer {
 
     private final AuthorizationInterceptor authorizationInterceptor; // AuthorizationInterceptor가 @Component이므로 주입 가능
+    private final UserSessionResolver userSessionResolver;
 
     // 회원가입, 약관과 같이 유저가 없어 인증 처리하지 않아도 되는 API => 인증에서 제외(exclude) 처리
     private final List<String> openApi = List.of(
@@ -39,5 +42,11 @@ public class WebConfig implements WebMvcConfigurer {
                 .excludePathPatterns(defaultExclude)
                 .excludePathPatterns(swagger)
                 ;
+    }
+
+    // userSessionResolver를 Bean으로 등록
+    @Override
+    public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
+        resolvers.add(userSessionResolver);
     }
 }

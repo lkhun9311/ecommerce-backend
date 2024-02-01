@@ -34,7 +34,7 @@ public class TokenBusiness {
     public TokenResponse issueToken(UserEntity userEntity) {
 
         return Optional.ofNullable(userEntity)
-                .map(ue -> ue.getId()) // 1. userEntity에서 userId 추출
+                .map(UserEntity::getId) // 1. userEntity에서 userId 추출
                 .map(userId -> {
                     // 2. accessToken, refreshToken 발행
                     TokenDto accessToken = tokenService.issueAccessToken(userId);
