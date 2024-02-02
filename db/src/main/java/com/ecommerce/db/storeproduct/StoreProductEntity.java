@@ -11,13 +11,13 @@ import lombok.experimental.SuperBuilder;
 import javax.persistence.*;
 import java.math.BigDecimal;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@EqualsAndHashCode(callSuper = true)
-@SuperBuilder
 @Entity
 @Table(name = "store_product")
+@Data
+@EqualsAndHashCode(callSuper = true)
+@NoArgsConstructor
+@AllArgsConstructor
+@SuperBuilder
 public class StoreProductEntity extends BaseEntity {
 
     @Column(nullable = false)

@@ -14,7 +14,6 @@ import javax.validation.Valid;
 
 /**
  * 외부에 공개된 Store API 컨트롤러
- * ?회원가입, 로그인 API 제공?
  * 인증이 필요 없는 엔드포인트
  */
 @RequiredArgsConstructor
@@ -24,6 +23,12 @@ public class StoreOpenApiController {
 
     private final StoreBusiness storeBusiness;
 
+    /**
+     * 상점 등록 엔드포인트
+     *
+     * @param request 상점 등록 요청(Api<StoreRegisterRequest>)
+     * @return 상점 등록 결과 응답(Api<StoreResponse>)
+     */
     @PostMapping("/register")
     public Api<StoreResponse> register(
             @Valid

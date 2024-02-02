@@ -28,10 +28,10 @@ public class UserConverter {
                 .map(it ->
                         // to entity
                         UserEntity.builder()
-                                .name(request.getName())
-                                .email(request.getEmail())
-                                .password(request.getPassword())
-                                .address(request.getAddress())
+                                .name(it.getName())
+                                .email(it.getEmail())
+                                .password(it.getPassword())
+                                .address(it.getAddress())
                                 .build()
                 )
                 .orElseThrow(() -> new ApiException(ErrorCode.NULL_POINT_ERROR, "UserRegisterRequest Null"));
@@ -50,14 +50,14 @@ public class UserConverter {
                 .map(it ->
                         // to response
                         UserResponse.builder()
-                                .id(newEntity.getId())
-                                .name(newEntity.getName())
-                                .email(newEntity.getEmail())
-                                .status(newEntity.getStatus())
-                                .address(newEntity.getAddress())
-                                .registeredAt(newEntity.getRegisteredAt())
-                                .unregisteredAt(newEntity.getUnregisteredAt())
-                                .lastLoginAt(newEntity.getLastLoginAt())
+                                .id(it.getId())
+                                .name(it.getName())
+                                .email(it.getEmail())
+                                .status(it.getStatus())
+                                .address(it.getAddress())
+                                .registeredAt(it.getRegisteredAt())
+                                .unregisteredAt(it.getUnregisteredAt())
+                                .lastLoginAt(it.getLastLoginAt())
                                 .build()
                 )
                 .orElseThrow(() -> new ApiException(ErrorCode.NULL_POINT_ERROR, "newEntity Null"));
@@ -76,14 +76,14 @@ public class UserConverter {
                 .map(it ->
                         // to response
                         UserResponse.builder()
-                                .id(user.getId())
-                                .name(user.getName())
-                                .email(user.getEmail())
-                                .status(user.getStatus())
-                                .address(user.getAddress())
-                                .registeredAt(user.getRegisteredAt())
-                                .unregisteredAt(user.getUnregisteredAt())
-                                .lastLoginAt(user.getLastLoginAt())
+                                .id(it.getId())
+                                .name(it.getName())
+                                .email(it.getEmail())
+                                .status(it.getStatus())
+                                .address(it.getAddress())
+                                .registeredAt(it.getRegisteredAt())
+                                .unregisteredAt(it.getUnregisteredAt())
+                                .lastLoginAt(it.getLastLoginAt())
                                 .build()
                 )
                 .orElseThrow(() -> new ApiException(ErrorCode.NULL_POINT_ERROR, "user Null"));
