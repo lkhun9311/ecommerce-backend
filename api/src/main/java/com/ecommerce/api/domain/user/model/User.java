@@ -30,4 +30,6 @@ public class User {
     private LocalDateTime unregisteredAt;
 
     private LocalDateTime lastLoginAt;
+
+    private LocalDateTime updatedAt;
 }

@@ -33,9 +33,9 @@ public class UserService {
     public UserEntity register(UserEntity userEntity) {
         return Optional.ofNullable(userEntity)
                 .map(it -> {
-                    userEntity.setStatus(UserStatus.REGISTERED);
-                    userEntity.setRegisteredAt(LocalDateTime.now());
-                    return userRepository.save(userEntity);
+                    it.setStatus(UserStatus.REGISTERED);
+                    it.setRegisteredAt(LocalDateTime.now());
+                    return userRepository.save(it);
                 })
                 .orElseThrow(() -> new ApiException(ErrorCode.NULL_POINT_ERROR, "UserEntity Null"));
     }
@@ -61,11 +61,12 @@ public class UserService {
      * @throws ApiException 사용자를 찾을 수 없는 경우 예외 발생
      */
     public UserEntity getUserWithThrow(String email, String password) {
-        return userRepository.findFirstByEmailAndPasswordAndStatusOrderByIdDesc(
+        Optional<UserEntity> userEntity = userRepository.findFirstByEmailAndPasswordAndStatusOrderByIdDesc(
                 email,
                 password,
                 UserStatus.REGISTERED
-        ).orElseThrow(() -> new ApiException(UserErrorCode.USER_NOT_FOUND));
+        );
+        return userEntity.orElseThrow(() -> new ApiException(UserErrorCode.USER_NOT_FOUND));
     }
 
     /**
@@ -76,9 +77,9 @@ public class UserService {
      * @throws ApiException 사용자를 찾을 수 없는 경우 예외 발생
      */
     public UserEntity getUserWithThrow(Long userId) {
-        return userRepository.findFirstByIdAndStatusOrderByIdDesc(
+        Optional<UserEntity> userEntity = userRepository.findFirstByIdAndStatusOrderByIdDesc(
                 userId,
-                UserStatus.REGISTERED
-        ).orElseThrow(() -> new ApiException(UserErrorCode.USER_NOT_FOUND));
+                UserStatus.REGISTERED);
+        return userEntity.orElseThrow(() -> new ApiException(UserErrorCode.USER_NOT_FOUND));
     }
 }
