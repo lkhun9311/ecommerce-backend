@@ -14,7 +14,7 @@ import java.util.List;
 @EnableWebSecurity
 public class SecurityConfig {
 
-    private List<String> swagger = List.of(
+    private final List<String> swagger = List.of(
             "/swagger-ui.html",
             "/swagger-ui/**",
             "/v2/api-docs/**"
