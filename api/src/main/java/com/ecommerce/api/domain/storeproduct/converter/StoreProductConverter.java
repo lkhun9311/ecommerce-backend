@@ -7,13 +7,15 @@ import com.ecommerce.api.domain.storeproduct.controller.model.StoreProductRegist
 import com.ecommerce.api.domain.storeproduct.controller.model.StoreProductResponse;
 import com.ecommerce.db.storeproduct.StoreProductEntity;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Converter
 public class StoreProductConverter {
 
     /**
-     * StoreProductRegisterRequest 객체를 StoreProductEntity로 변환하는 메서드
+     * StoreProductRegisterRequest 객체를 StoreProductEntity로 변환하는 메소드
      *
      * @param request 등록할 상품 정보를 담은 요청 객체
      * @return StoreProductEntity로 변환된 객체
@@ -32,7 +34,7 @@ public class StoreProductConverter {
     }
 
     /**
-     * StoreProductEntity 객체를 StoreProductResponse로 변환하는 메서드
+     * StoreProductEntity 객체를 StoreProductResponse로 변환하는 메소드
      *
      * @param storeProductEntity 변환할 상품 엔티티 객체
      * @return StoreProductResponse로 변환된 객체
@@ -52,5 +54,17 @@ public class StoreProductConverter {
                         .build()
                 )
                 .orElseThrow(() -> new ApiException(ErrorCode.NULL_POINT_ERROR));
+    }
+
+    /**
+     * StoreProductEntity 리스트를 StoreProductResponse 리스트로 변환하는 메소드
+     *
+     * @param list StoreProductEntity 리스트
+     * @return StoreProductResponse 리스트
+     */
+    public List<StoreProductResponse> toRespnonse(List<StoreProductEntity> list) {
+        return list.stream()
+                .map(this::toResponse)
+                .collect(Collectors.toList());
     }
 }
