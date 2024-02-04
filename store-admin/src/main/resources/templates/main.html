@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="kor" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Main</title>
+</head>
+<body>
+    <h1>Main Page</h1> <br>
+
+    <h1>store name : </h1>
+    <h1 th:text="${#authentication.principal.storeName}"></h1> <br>
+
+    <h1>user name : </h1>
+    <h1 th:text="${#authentication.name}"></h1> <br>
+
+    <h1>user role : </h1>
+    <h1 th:text="${#authentication.principal.role}"></h1> <br>
+
+    <h1>authentication : </h1>
+    <h1 th:text="${#authentication}"></h1>
+</body>
+</html>
