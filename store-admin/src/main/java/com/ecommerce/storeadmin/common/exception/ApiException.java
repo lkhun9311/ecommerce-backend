@@ -1,6 +1,7 @@
-package com.ecommerce.api.common.exception;
+package com.ecommerce.storeadmin.common.exception;
 
-import com.ecommerce.api.common.error.ErrorCodeIfs;
+
+import com.ecommerce.storeadmin.common.error.ErrorCodeIfs;
 import lombok.Getter;
 
 @Getter
