@@ -12,6 +12,7 @@ import com.ecommerce.api.domain.userorder.controller.model.UserOrderDetailRespon
 import com.ecommerce.api.domain.userorder.controller.model.UserOrderRequest;
 import com.ecommerce.api.domain.userorder.controller.model.UserOrderResponse;
 import com.ecommerce.api.domain.userorder.converter.UserOrderConverter;
+import com.ecommerce.api.domain.userorder.producer.UserOrderProducer;
 import com.ecommerce.api.domain.userorder.service.UserOrderService;
 import com.ecommerce.api.domain.userorderproduct.converter.UserOrderProductConverter;
 import com.ecommerce.api.domain.userorderproduct.service.UserOrderProductService;
@@ -37,6 +38,7 @@ public class UserOrderBusiness {
     private final UserOrderProductConverter userOrderProductConverter;
     private final StoreProductConverter storeProductConverter;
     private final StoreConverter storeConverter;
+    private final UserOrderProducer userOrderProducer;
 
     /**
      * 사용자의 주문을 처리하고 응답 반환
@@ -56,7 +58,11 @@ public class UserOrderBusiness {
                 .map(it -> userOrderProductConverter.toEntity(newUserOrderEntity, it))
                 .collect(Collectors.toList());
 
+        // 주문 내역 기록(UserOrderProductStatus.REGISTERED)
         userOrderProductEntityList.forEach(userOrderProductService::order);
+
+        // 비동기로 상점에 주문 발행(produce)
+        userOrderProducer.sendOrder(newUserOrderEntity);
 
         return userOrderConverter.toResponse(newUserOrderEntity);
     }
