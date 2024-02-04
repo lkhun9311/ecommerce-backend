@@ -16,3 +16,14 @@ services:
       - TZ=Asia/Seoul
     volumes:
       - C:\Temp\MYSQL:/var/lib/mysql
+
+  rabbitmq:
+    image: rabbitmq:latest
+    ports:
+      - "5672:5672" # rabbitmq amqp port
+      - "15672:15672" # rabbitmq 관리자 도구 port
+    environment:
+      - RABBITMQ_DEFAULT_USER=admin # rabbitmq 기본 사용자 이름
+      - RABBITMQ_DEFAULT_PASS=admin # rabbitmq 기본 사용자 비밀번호
+      # rabbitmq management 활성화 명령어
+      # rabbitmq-plugins enable rabbitmq_management
