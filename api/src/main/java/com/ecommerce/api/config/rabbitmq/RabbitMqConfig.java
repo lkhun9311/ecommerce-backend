@@ -46,7 +46,7 @@ public class RabbitMqConfig {
 
     /**
      * RabbitTemplate을 생성해 RabbitMQ와 통신하는 데 사용할 객체 정의
-     * @param connectionFactory RabbitMQ와의 연결을 관리하는 ConnectionFactory 객체 (application.yaml에 rabbitmq host, port, username, password 작성함)
+     * @param connectionFactory RabbitMQ와의 연결을 관리하는 ConnectionFactory 객체 (application.yaml에 rabbitmq host, port, username, password를 통해 ConnectionFactory 생성)
      * @param messageConverter 메시지 변환을 위한 MessageConverter 객체
      * @return 생성된 RabbitTemplate 객체
      */

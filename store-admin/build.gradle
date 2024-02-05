@@ -28,6 +28,9 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
+    // amqp
+    implementation 'org.springframework.boot:spring-boot-starter-amqp'
+
     // spring security
     implementation 'org.springframework.boot:spring-boot-starter-security'
 
