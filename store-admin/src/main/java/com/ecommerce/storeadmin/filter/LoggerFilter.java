@@ -18,50 +18,75 @@ public class LoggerFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 
-        ContentCachingRequestWrapper req = new ContentCachingRequestWrapper((HttpServletRequest) request);
-        ContentCachingResponseWrapper res = new ContentCachingResponseWrapper((HttpServletResponse) response);
+        HttpServletRequest httpRequest = (HttpServletRequest) request;
+        HttpServletResponse httpResponse = (HttpServletResponse) response;
 
-        //doFilter를 기준으로 위의 코드는 실행 전에 해당
-        chain.doFilter(req, res);
-        //doFilter를 기준으로 아래의 코드는 실행 후에 해당
+        ContentCachingRequestWrapper req = new ContentCachingRequestWrapper(httpRequest);
+        ContentCachingResponseWrapper res = new ContentCachingResponseWrapper(httpResponse);
 
-        Enumeration<String> headerNames = req.getHeaderNames();
+        // 요청이 Server Sent Events인지 확인
+        boolean isSseRequest = isSseRequest(httpRequest);
+
+        // Server-Sent Events 요청이 아닌 경우에만 응답 본문을 캐싱하도록 체인 호출
+        if (isSseRequest) {
+            chain.doFilter(req, response);
+        } else {
+            chain.doFilter(req, res);
+        }
+
+        // 요청 및 응답 정보 로깅
+        logRequestInfo(req);
+        logResponseInfo(httpRequest, res);
+
+        // 응답 본문을 복사해 재전송
+        res.copyBodyToResponse();
+    }
+
+    // 요청이 Server Sent Events인지 확인하는 메서드
+    private boolean isSseRequest(HttpServletRequest request) {
+        String acceptHeader = request.getHeader("Accept");
+        return acceptHeader != null && acceptHeader.contains("text/event-stream");
+    }
+
+    // 요청 정보를 로깅하는 메서드
+    private void logRequestInfo(HttpServletRequest request) {
+        Enumeration<String> headerNames = request.getHeaderNames();
         StringBuilder headerValues = new StringBuilder();
 
-        headerNames.asIterator().forEachRemaining( headerKey -> {
-            String headerValue = req.getHeader(headerKey);
-
+        headerNames.asIterator().forEachRemaining(headerKey -> {
+            String headerValue = request.getHeader(headerKey);
             headerValues
                     .append("[")
                     .append(headerKey)
                     .append(" : ")
                     .append(headerValue)
-                    .append(("] "));
+                    .append("] ");
         });
 
-        String requestBody = new String(req.getContentAsByteArray());
-        String uri = req.getRequestURI();
-        String method = req.getMethod();
+        // 요청 본문을 문자열로 변환
+        String requestBody = new String(((ContentCachingRequestWrapper) request).getContentAsByteArray());
+        String uri = request.getRequestURI();
+        String method = request.getMethod();
 
+        // 로깅
         log.info(">>> uri : {}, method : {}, header : {}, body : {}", uri, method, headerValues, requestBody);
+    }
 
+    // 응답 정보를 로깅하는 메서드
+    private void logResponseInfo(HttpServletRequest request, ContentCachingResponseWrapper response) {
         StringBuilder responseHeaderValues = new StringBuilder();
 
-        res.getHeaderNames().forEach(headerKey -> {
-            String headerValue = res.getHeader(headerKey);
-
-            responseHeaderValues
-                    .append("[")
-                    .append(headerKey)
-                    .append(" : ")
-                    .append(headerValue)
-                    .append(("] "));
+        response.getHeaderNames().forEach(headerKey -> {
+            String headerValue = response.getHeader(headerKey);
+            responseHeaderValues.append("[").append(headerKey).append(" : ").append(headerValue).append("] ");
         });
 
-        String responseBody = new String(res.getContentAsByteArray());
+        // 응답 본문을 문자열로 변환
+        String responseBody = new String(response.getContentAsByteArray());
+        String uri = request.getRequestURI();
+        String method = request.getMethod();
 
+        // 로깅
         log.info("<<< uri : {}, method : {}, header : {}, body : {}", uri, method, responseHeaderValues, responseBody);
-
-        res.copyBodyToResponse();
     }
 }

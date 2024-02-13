@@ -17,6 +17,7 @@ public class RabbitMqConfig {
 
     /**
      * DirectExchange를 생성해 RabbitMQ에 사용할 교환(exchange) 정의
+     * DirectExchange는 RabbitMQ의 Exchange(교환) 타입 중 하나로, 라우팅 키를 기반으로 메시지를 바인딩된 큐 중 일치하는 큐에게만 전달
      * @return 생성된 DirectExchange 객체
      */
     @Bean
@@ -30,7 +31,7 @@ public class RabbitMqConfig {
      */
     @Bean
     public Queue queue(){
-        return new Queue("ecommerce.queue");
+        return new Queue("ecommerce.queue", true);
     }
 
     /**

@@ -21,7 +21,8 @@ public class HealthOpenApiController {
      */
     @GetMapping("/health")
     public void health() {
+
         log.info("health call");
-        producer.produce("ecommerce.exchange", "ecommerce.key", "hello"); // RabbitMQ Producer 정상 작동 여부 확인 용도
+        producer.produce("ecommerce.exchange", "ecommerce.key", 0); // RabbitMQ Producer 정상 작동 여부 확인 용도
     }
 }

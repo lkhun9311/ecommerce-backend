@@ -4,8 +4,10 @@ import com.ecommerce.api.common.message.UserOrderMessage;
 import com.ecommerce.api.common.rabbitmq.Producer;
 import com.ecommerce.db.userorder.UserOrderEntity;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+@Slf4j
 @RequiredArgsConstructor
 @Service
 public class UserOrderProducer {
@@ -34,5 +36,6 @@ public class UserOrderProducer {
 
         // producer를 이용해 RabbitMQ에 메시지 전송 (produce)
         producer.produce(EXCHANGE, ROUTE_KEY, message);
+        log.info("rabbitmq produce >> {}", message);
     }
 }

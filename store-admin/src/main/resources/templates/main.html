@@ -18,5 +18,22 @@
 
     <h1>authentication : </h1>
     <h1 th:text="${#authentication}"></h1>
+    <script>
+        const url = "http://localhost:8081/api/sse/connect"; // sse 접속 주소
+        const eventSource = new EventSource(url); // sse 연결
+
+        eventSource.onopen = event => { // sse 최초 접속 성공 시 들어오는 메서드(onopen)
+            console.log("sse connected");
+        }
+
+        eventSource.onmessage = event => { // server로부터 받은 데이터가 client로 들어오는 메서드(onmessage)
+            console.log("received data : "+event.data);
+        }
+
+        eventSource.onerror = event => {
+            console.log(event);
+        }
+    </script>
 </body>
+
 </html>
