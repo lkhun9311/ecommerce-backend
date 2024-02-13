@@ -22,7 +22,7 @@
         const url = "http://localhost:8081/api/sse/connect"; // sse 접속 주소
         const eventSource = new EventSource(url); // sse 연결
 
-        eventSource.onopen = event => { // sse 최초 접속 성공 시 들어오는 메서드(onopen)
+        eventSource.onopen = () => { // sse 최초 접속 성공 시 들어오는 메서드(onopen)
             console.log("sse connected");
         }
 
