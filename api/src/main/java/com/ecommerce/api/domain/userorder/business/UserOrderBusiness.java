@@ -51,7 +51,7 @@ public class UserOrderBusiness {
         List<StoreProductEntity> storeProductEntityList = body.getStoreProductIdList().stream()
                 .map(storeProductService::getStoreProductWithThrow)
                 .collect(Collectors.toList());
-        UserOrderEntity userOrderEntity = userOrderConverter.toEntity(user, storeProductEntityList);
+        UserOrderEntity userOrderEntity = userOrderConverter.toEntity(user, body.getStoreId(), storeProductEntityList);
         UserOrderEntity newUserOrderEntity = userOrderService.order(userOrderEntity);
 
         List<UserOrderProductEntity> userOrderProductEntityList = storeProductEntityList.stream()
@@ -130,6 +130,7 @@ public class UserOrderBusiness {
 
     /**
      * 특정 주문에 대한 상세 정보 조회
+     *
      * @param user 사용자 정보
      * @param orderId 주문 ID
      * @return 특정 주문에 대한 상세 응답

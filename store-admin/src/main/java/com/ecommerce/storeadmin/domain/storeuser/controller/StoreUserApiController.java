@@ -1,9 +1,9 @@
-package com.ecommerce.storeadmin.domain.user.controller;
+package com.ecommerce.storeadmin.domain.storeuser.controller;
 
 import com.ecommerce.storeadmin.common.api.Api;
 import com.ecommerce.storeadmin.domain.authorization.model.UserSession;
-import com.ecommerce.storeadmin.domain.user.controller.model.StoreUserResponse;
-import com.ecommerce.storeadmin.domain.user.converter.StoreUserConverter;
+import com.ecommerce.storeadmin.domain.storeuser.controller.model.StoreUserResponse;
+import com.ecommerce.storeadmin.domain.storeuser.converter.StoreUserConverter;
 import io.swagger.v3.oas.annotations.Parameter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -20,6 +20,7 @@ public class StoreUserApiController {
 
     /**
      * 현재 인증된 사용자에 대한 정보를 조회
+     *
      * @param userSession 현재 인증된 사용자의 세션 정보를 나타내는 객체
      *                    사용자의 식별자, 이메일, 권한 등의 정보 포함
      *                    AuthenticationPrincipal 어노테이션을 통해 주입

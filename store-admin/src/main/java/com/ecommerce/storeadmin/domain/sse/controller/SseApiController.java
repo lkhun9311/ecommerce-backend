@@ -1,5 +1,7 @@
 package com.ecommerce.storeadmin.domain.sse.controller;
 
+import com.ecommerce.storeadmin.common.error.ErrorCode;
+import com.ecommerce.storeadmin.common.exception.ApiException;
 import com.ecommerce.storeadmin.domain.authorization.model.UserSession;
 import com.ecommerce.storeadmin.domain.sse.connection.SseConnectionPool;
 import com.ecommerce.storeadmin.domain.sse.connection.model.UserSseConnection;
@@ -60,8 +62,11 @@ public class SseApiController {
 
         // 세션이 존재하면 이벤트 전송
         Optional.ofNullable(userSseConnection)
-                .ifPresent(it ->
-                    it.sendEvent("event push")
+                .ifPresentOrElse(
+                        it -> it.sendEvent("event push"),
+                        () -> {
+                            throw new ApiException(ErrorCode.NULL_POINT_ERROR, "user sse connection not found");
+                        }
                 );
     }
 }

@@ -1,9 +1,9 @@
-package com.ecommerce.storeadmin.domain.user.controller;
+package com.ecommerce.storeadmin.domain.storeuser.controller;
 
 import com.ecommerce.storeadmin.common.api.Api;
-import com.ecommerce.storeadmin.domain.user.busniess.StoreUserBusiness;
-import com.ecommerce.storeadmin.domain.user.controller.model.StoreUserRegisterRequest;
-import com.ecommerce.storeadmin.domain.user.controller.model.StoreUserResponse;
+import com.ecommerce.storeadmin.domain.storeuser.busniess.StoreUserBusiness;
+import com.ecommerce.storeadmin.domain.storeuser.controller.model.StoreUserRegisterRequest;
+import com.ecommerce.storeadmin.domain.storeuser.controller.model.StoreUserResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

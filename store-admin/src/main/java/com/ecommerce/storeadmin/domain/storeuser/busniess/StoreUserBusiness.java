@@ -1,15 +1,15 @@
-package com.ecommerce.storeadmin.domain.user.busniess;
+package com.ecommerce.storeadmin.domain.storeuser.busniess;
 
 import com.ecommerce.db.store.StoreEntity;
 import com.ecommerce.db.store.enums.StoreStatus;
 import com.ecommerce.db.storeuser.StoreUserEntity;
 import com.ecommerce.storeadmin.common.annotation.Business;
 import com.ecommerce.storeadmin.common.api.Api;
-import com.ecommerce.storeadmin.domain.user.controller.model.StoreUserRegisterRequest;
-import com.ecommerce.storeadmin.domain.user.controller.model.StoreUserResponse;
-import com.ecommerce.storeadmin.domain.user.converter.StoreUserConverter;
-import com.ecommerce.storeadmin.domain.user.service.StoreService;
-import com.ecommerce.storeadmin.domain.user.service.StoreUserService;
+import com.ecommerce.storeadmin.domain.storeuser.controller.model.StoreUserRegisterRequest;
+import com.ecommerce.storeadmin.domain.storeuser.controller.model.StoreUserResponse;
+import com.ecommerce.storeadmin.domain.storeuser.converter.StoreUserConverter;
+import com.ecommerce.storeadmin.domain.storeuser.service.StoreService;
+import com.ecommerce.storeadmin.domain.storeuser.service.StoreUserService;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor

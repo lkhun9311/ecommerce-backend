@@ -14,6 +14,7 @@ public class UserOrderConverter {
 
     public UserOrderEntity toEntity(
             User user,
+            Long storeId,
             List<StoreProductEntity> storeProductEntityList
     ) {
         BigDecimal totalAmount = storeProductEntityList.stream()
@@ -23,6 +24,7 @@ public class UserOrderConverter {
 
         return UserOrderEntity.builder()
                 .userId(user.getId())
+                .storeId(storeId)
                 .amount(totalAmount)
                 .build();
     }

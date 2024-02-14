@@ -7,7 +7,7 @@ import com.ecommerce.db.storeuser.StoreUserEntity;
 import com.ecommerce.storeadmin.common.error.ErrorCode;
 import com.ecommerce.storeadmin.common.exception.ApiException;
 import com.ecommerce.storeadmin.domain.authorization.model.UserSession;
-import com.ecommerce.storeadmin.domain.user.service.StoreUserService;
+import com.ecommerce.storeadmin.domain.storeuser.service.StoreUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -29,6 +29,7 @@ public class AuthorizationService implements UserDetailsService {
     /**
      * Spring Security의 UserDetailsService 구현
      * 주어진 사용자 이름(username)에 대한 정보를 조회하고 UserDetails 객체로 반환
+     *
      * @param username 사용자 이름
      * @return UserDetails 객체
      * @throws UsernameNotFoundException 주어진 사용자 이름에 대한 정보가 없을 경우 발생하는 예외

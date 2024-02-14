@@ -1,10 +1,8 @@
-package com.ecommerce.storeadmin.domain.user.service;
+package com.ecommerce.storeadmin.domain.storeuser.service;
 
 import com.ecommerce.db.storeuser.StoreUserEntity;
 import com.ecommerce.db.storeuser.StoreUserRepository;
 import com.ecommerce.db.storeuser.enums.StoreUserStatus;
-import com.ecommerce.storeadmin.common.error.ErrorCode;
-import com.ecommerce.storeadmin.common.exception.ApiException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

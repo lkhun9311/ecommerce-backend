@@ -1,11 +1,11 @@
-package com.ecommerce.storeadmin.domain.user.converter;
+package com.ecommerce.storeadmin.domain.storeuser.converter;
 
 import com.ecommerce.db.store.StoreEntity;
 import com.ecommerce.db.storeuser.StoreUserEntity;
 import com.ecommerce.storeadmin.common.annotation.Converter;
 import com.ecommerce.storeadmin.domain.authorization.model.UserSession;
-import com.ecommerce.storeadmin.domain.user.controller.model.StoreUserRegisterRequest;
-import com.ecommerce.storeadmin.domain.user.controller.model.StoreUserResponse;
+import com.ecommerce.storeadmin.domain.storeuser.controller.model.StoreUserRegisterRequest;
+import com.ecommerce.storeadmin.domain.storeuser.controller.model.StoreUserResponse;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor

@@ -1,4 +1,4 @@
-package com.ecommerce.storeadmin.domain.user.service;
+package com.ecommerce.storeadmin.domain.storeuser.service;
 
 import com.ecommerce.db.store.StoreEntity;
 import com.ecommerce.db.store.StoreRepository;

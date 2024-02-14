@@ -1,4 +1,4 @@
-package com.ecommerce.storeadmin.domain.user.controller.model;
+package com.ecommerce.storeadmin.domain.storeuser.controller.model;
 
 import com.ecommerce.db.storeuser.enums.StoreUserRole;
 import com.ecommerce.db.storeuser.enums.StoreUserStatus;
