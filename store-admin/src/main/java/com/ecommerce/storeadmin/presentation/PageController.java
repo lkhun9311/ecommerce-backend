@@ -19,4 +19,16 @@ public class PageController {
     public ModelAndView main(){
         return new ModelAndView("main");
     }
+
+    /**
+     * 주문 관리 페이지에 대한 요청 처리
+     * "/order" 경로로 들어오는 요청 처리
+     * "order"에 해당하는 뷰(order.html) 반환
+     *
+     * @return ModelAndView 객체("order" 뷰 포함)
+     */
+    @RequestMapping("/order")
+    public ModelAndView order(){
+        return new ModelAndView("order/order");
+    }
 }

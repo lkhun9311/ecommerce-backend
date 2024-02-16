@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="kor">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>주문 관리</title>
+
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .button-container button {
+            margin-right: 8px;
+        }
+    </style>
+
+</head>
+<body>
+<div id="app">
+    <table>
+        <thead>
+        <tr>
+            <th>주문 번호</th>
+            <th>주문 내용</th>
+            <th>주문 가격</th>
+            <th>주문 상태</th>
+            <th>주문 처리</th>
+        </tr>
+        </thead>
+        <tbody id="orderTable">
+        </tbody>
+    </table>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', async function () {
+        const orderTable = document.getElementById('orderTable');
+
+        async function fetchData() {
+            try {
+                const response = await fetch('http://localhost:8080/api/user-order/current');
+                const data = await response.json();
+                return data.body;
+            } catch (error) {
+                console.error('Error Fetching Data : ', error);
+            }
+        }
+
+        async function createTable() {
+            const orders = await fetchData();
+
+            orders.forEach(order => {
+                const row = createOrderRow(order);
+                orderTable.appendChild(row);
+            });
+        }
+
+        createTable();
+
+        function acceptOrder(order) {
+            console.log("주문 수락:", order);
+        }
+
+        function startDelivery(order) {
+            console.log("배송 시작:", order);
+        }
+
+        function pushData(order) {
+            const row = createOrderRow(order);
+            orderTable.prepend(row);
+        }
+
+        function createOrderRow(order) {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${order.user_order_response.id}</td>
+                <td>
+                    <ul>
+                        ${order.store_product_response_list.map(item => `<li>제품명 : ${item.name}</li>`).join('')}
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        ${order.store_product_response_list.map(item => `<li>가격 : ${item.amount}</li>`).join('')}
+                    </ul>
+                </td>
+                <td>${order.user_order_response.status}</td>
+                <td class="button-container">
+                    <button class="accept" data-order='${JSON.stringify(order)}'>주문 수락</button>
+                    <button class="delivery" data-order='${JSON.stringify(order)}'>배송 시작</button>
+                </td>
+            `;
+
+            // 버튼 요소 선택
+            const acceptButton = row.querySelector('.accept');
+            const deliveryButton = row.querySelector('.delivery');
+
+            // 주문 수락 버튼 클릭 시 이벤트 추가
+            acceptButton.addEventListener('click', function() {
+                const orderData = JSON.parse(this.dataset.order);
+                acceptOrder(orderData);
+            });
+
+            // 배송 시작 버튼 클릭 시 이벤트 추가
+            deliveryButton.addEventListener('click', function() {
+                const orderData = JSON.parse(this.dataset.order);
+                startDelivery(orderData);
+            });
+
+            return row;
+        }
+
+        const url = "http://localhost:8081/api/sse/connect";
+        const eventSource = new EventSource(url);
+
+        eventSource.onopen = () => {
+            console.log("sse connection")
+        }
+
+        eventSource.onmessage = event => {
+            console.log("received data : " + event.data);
+            const data = JSON.parse(event.data);
+            pushData(data);
+        }
+    });
+</script>
+</body>
+</html>

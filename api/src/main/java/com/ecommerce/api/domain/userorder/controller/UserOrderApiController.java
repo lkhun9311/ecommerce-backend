@@ -48,6 +48,7 @@ public class UserOrderApiController {
      * @param user 현재 로그인한 사용자 정보
      * @return 현재 주문 내역 조회 결과를 담은 응답
      */
+    @CrossOrigin(origins = "http://localhost:8081")
     @GetMapping("/current")
     public Api<List<UserOrderDetailResponse>> currentOrder(
             @Parameter(hidden = true)
