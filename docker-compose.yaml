@@ -27,3 +27,10 @@ services:
       - RABBITMQ_DEFAULT_PASS=admin # rabbitmq 기본 사용자 비밀번호
       # rabbitmq management 활성화 명령어
       # rabbitmq-plugins enable rabbitmq_management
+
+  redis:
+    image: redis
+    command: redis-server
+    container_name: redis
+    ports:
+      - "6379:6379"

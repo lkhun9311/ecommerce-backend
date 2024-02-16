@@ -22,7 +22,7 @@ public class UserOrderApiController {
     private final UserOrderBusiness userOrderBusiness;
 
     /**
-     * 상품 주문을 처리하는 엔드포인트
+     * 상품 주문 처리
      *
      * @param request 주문 요청 정보
      * @param user    현재 로그인한 사용자 정보
@@ -43,7 +43,7 @@ public class UserOrderApiController {
     }
 
     /**
-     * 현재 진행 중인 주문 내역을 조회하는 엔드포인트
+     * 현재 진행 중인 주문 내역 조회
      *
      * @param user 현재 로그인한 사용자 정보
      * @return 현재 주문 내역 조회 결과를 담은 응답
@@ -59,7 +59,7 @@ public class UserOrderApiController {
     }
 
     /**
-     * 과거 주문 내역을 조회하는 엔드포인트
+     * 과거 주문 내역 조회
      *
      * @param user 현재 로그인한 사용자 정보
      * @return 과거 주문 내역 조회 결과를 담은 응답
@@ -70,12 +70,12 @@ public class UserOrderApiController {
             @UserSession
             User user
     ) {
-        List<UserOrderDetailResponse> responseList = userOrderBusiness.orderhistory(user);
+        List<UserOrderDetailResponse> responseList = userOrderBusiness.orderHistory(user);
         return Api.ok(responseList);
     }
 
     /**
-     * 특정 주문 내역을 조회하는 엔드포인트
+     * 특정 주문 내역 조회
      *
      * @param user    현재 로그인한 사용자 정보
      * @param orderId 조회할 주문의 ID

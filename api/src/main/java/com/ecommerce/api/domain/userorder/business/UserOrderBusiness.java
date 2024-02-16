@@ -21,6 +21,7 @@ import com.ecommerce.db.storeproduct.StoreProductEntity;
 import com.ecommerce.db.userorder.UserOrderEntity;
 import com.ecommerce.db.userorderproduct.UserOrderProductEntity;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 
 import java.util.List;
 import java.util.Optional;
@@ -108,6 +109,7 @@ public class UserOrderBusiness {
      * @param user 사용자 정보
      * @return 현재 주문 내역에 대한 상세 응답 리스트
      */
+    @Cacheable(cacheNames = "UserOrderCurrent", key = "#user.id")
     public List<UserOrderDetailResponse> currentOrder(User user) {
         List<UserOrderEntity> userOrderEntityList = userOrderService.currentOrderList(user.getId());
         return userOrderEntityList.stream()
@@ -121,7 +123,8 @@ public class UserOrderBusiness {
      * @param user 사용자 정보
      * @return 과거 주문 내역에 대한 상세 응답 리스트
      */
-    public List<UserOrderDetailResponse> orderhistory(User user) {
+    @Cacheable(cacheNames = "UserOrderHistory", key = "#user.id")
+    public List<UserOrderDetailResponse> orderHistory(User user) {
         List<UserOrderEntity> userOrderEntityList = userOrderService.historyOrderList(user.getId());
         return userOrderEntityList.stream()
                 .map(this::processOrder)
@@ -135,6 +138,7 @@ public class UserOrderBusiness {
      * @param orderId 주문 ID
      * @return 특정 주문에 대한 상세 응답
      */
+    @Cacheable(cacheNames = "UserOrderRead", key = "#orderId")
     public UserOrderDetailResponse readOrder(User user, Long orderId) {
         UserOrderEntity userOrderEntity = userOrderService.getUserOrderWithoutThrow(orderId, user.getId());
         return processOrder(userOrderEntity);
