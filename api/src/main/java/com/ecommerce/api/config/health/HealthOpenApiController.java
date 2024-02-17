@@ -20,9 +20,11 @@ public class HealthOpenApiController {
      * RabbitMQ Producer를 사용해 "hello" 메시지를 "ecommerce.exchange"와 "ecommerce.key"로 라우팅해 전송
      */
     @GetMapping("/health")
-    public void health() {
+    public String health() {
 
         log.info("health call");
         producer.produce("ecommerce.exchange", "ecommerce.key", 0); // RabbitMQ Producer 정상 작동 여부 확인 용도
+
+        return "health check";
     }
 }
