@@ -4,4 +4,7 @@ include 'db'
 include 'store-admin'
 include 'apigateway'
 include 'membership'
+include 'store'
+include 'product'
+include 'order'
 
