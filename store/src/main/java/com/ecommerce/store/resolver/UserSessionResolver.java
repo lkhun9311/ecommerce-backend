@@ -39,7 +39,7 @@ public class UserSessionResolver implements HandlerMethodArgumentResolver {
     // supportsParameter 메소드에서 true 반환 시 resolveArgument 메소드 실행
     // 현재 요청의 userId 가져 옴 => UserService를 통해 해당 사용자의 UserEntity 가져 옴 => 이를 기반으로 User 객체 생성 => return User 객체
     @Override
-    public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer, NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
+    public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer, NativeWebRequest webRequest, WebDataBinderFactory binderFactory) {
 
         // RequestContextHolder에서 현재 요청의 RequestAttributes 객체(requestContext) 가져 옴
         RequestAttributes requestContext = RequestContextHolder.getRequestAttributes();
