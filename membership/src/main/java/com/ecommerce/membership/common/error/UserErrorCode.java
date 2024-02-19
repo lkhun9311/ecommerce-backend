@@ -16,7 +16,6 @@ public enum UserErrorCode implements ErrorCodeIfs {
     REQUEST_CONTEXT_NOT_FOUND(HttpStatus.NOT_FOUND.value(), 1404, "Request Context Null Error"),
     X_USER_ID_NOT_FOUND(HttpStatus.NOT_FOUND.value(), 1404, "x-user-id를 찾을 수 없음"),
     ;
-    ;
 
     private final Integer httpStatusCode;
     private final Integer errorCodeNumber;

@@ -20,6 +20,7 @@ import reactor.core.publisher.Mono;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Spring Cloud Gateway에서 Private API 요청을 처리하는 사용자 정의 필터
@@ -115,11 +116,11 @@ public class ServicePrivateApiFilter extends AbstractGatewayFilterFactory<Servic
                         String address = response.getAddress() != null ? response.getAddress() : null;
 
                         ServerHttpRequest requestProxy = exchange.getRequest().mutate()
-                                .header("x-user-id", userId)
-                                .header("x-user-name", toUnicode(name))
-                                .header("x-user-email", toUnicode(email))
-                                .header("x-user-status", status)
-                                .header("x-user-address", toUnicode(address))
+                                .header("x-user-id", Objects.requireNonNull(userId))
+                                .header("x-user-name", toUnicode(Objects.requireNonNull(name)))
+                                .header("x-user-email", toUnicode(Objects.requireNonNull(email)))
+                                .header("x-user-status", Objects.requireNonNull(status))
+                                .header("x-user-address", toUnicode(Objects.requireNonNull(address)))
                                 .build();
 
                         ServerWebExchange requestBuild = exchange.mutate().request(requestProxy).build();

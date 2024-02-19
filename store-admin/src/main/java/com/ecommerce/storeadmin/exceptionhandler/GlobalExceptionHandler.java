@@ -1,7 +1,7 @@
-package com.ecommerce.membership.exceptionhandler;
+package com.ecommerce.storeadmin.exceptionhandler;
 
-import com.ecommerce.membership.common.api.Api;
-import com.ecommerce.membership.common.error.ErrorCode;
+import com.ecommerce.storeadmin.common.api.Api;
+import com.ecommerce.storeadmin.common.error.ErrorCode;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
