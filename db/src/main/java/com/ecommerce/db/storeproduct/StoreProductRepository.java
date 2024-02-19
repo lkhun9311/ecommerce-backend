@@ -12,5 +12,5 @@ public interface StoreProductRepository extends JpaRepository<StoreProductEntity
     Optional<StoreProductEntity> findFirstByIdAndStatusOrderByIdDesc(Long id, StoreProductStatus status);
 
     // 특정 상점의 상품 전부 가져오기
-    List<StoreProductEntity> findAllByStoreIdAndStatusOrderBySequenceDesc(Long storeId, StoreProductStatus status);
+    List<StoreProductEntity> findAllByStoreIdAndStatusOrderByStoreIdDesc(Long storeId, StoreProductStatus status);
 }

@@ -1,10 +1,10 @@
-package com.ecommerce.api.domain.storeproduct.service;
+package com.ecommerce.product.domain.storeproduct.service;
 
-import com.ecommerce.api.common.error.ErrorCode;
-import com.ecommerce.api.common.exception.ApiException;
 import com.ecommerce.db.storeproduct.StoreProductEntity;
 import com.ecommerce.db.storeproduct.StoreProductRepository;
 import com.ecommerce.db.storeproduct.enums.StoreProductStatus;
+import com.ecommerce.product.common.error.ErrorCode;
+import com.ecommerce.product.common.exception.ApiException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

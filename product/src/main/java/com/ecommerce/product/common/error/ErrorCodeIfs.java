@@ -1,0 +1,8 @@
+package com.ecommerce.product.common.error;
+
+public interface ErrorCodeIfs {
+
+    Integer getHttpStatusCode();
+    Integer getErrorCodeNumber();
+    String getDescription();
+}

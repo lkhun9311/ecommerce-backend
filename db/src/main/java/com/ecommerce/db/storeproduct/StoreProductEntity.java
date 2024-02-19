@@ -37,6 +37,4 @@ public class StoreProductEntity extends BaseEntity {
     private String thumbnailUrl;
 
     private int likeCount;
-
-    private int sequence;
 }
