@@ -35,7 +35,7 @@ public class ServicePublicApiFilter extends AbstractGatewayFilterFactory<Service
     public GatewayFilter apply(Config config) {
         return (exchange, chain) -> {
             String uri = exchange.getRequest().getURI().toString(); // 들어오는 요청 URI
-            log.info("Service Public API filter route URI: {}", uri);
+            log.info("[Service Public API Filter] route URI: {}", uri);
 
             // 필터 체인 계속 진행
             return chain.filter(exchange);

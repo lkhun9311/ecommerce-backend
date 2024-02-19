@@ -1,7 +1,7 @@
 package com.ecommerce.api.domain.userorder.converter;
 
 import com.ecommerce.api.common.annotation.Converter;
-import com.ecommerce.api.domain.user.model.User;
+import com.ecommerce.api.resolver.model.User;
 import com.ecommerce.api.domain.userorder.controller.model.UserOrderResponse;
 import com.ecommerce.db.storeproduct.StoreProductEntity;
 import com.ecommerce.db.userorder.UserOrderEntity;

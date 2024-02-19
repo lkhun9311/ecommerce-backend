@@ -2,7 +2,7 @@ package com.ecommerce.api.domain.userorder.controller;
 
 import com.ecommerce.api.common.annotation.UserSession;
 import com.ecommerce.api.common.api.Api;
-import com.ecommerce.api.domain.user.model.User;
+import com.ecommerce.api.resolver.model.User;
 import com.ecommerce.api.domain.userorder.business.UserOrderBusiness;
 import com.ecommerce.api.domain.userorder.controller.model.UserOrderDetailResponse;
 import com.ecommerce.api.domain.userorder.controller.model.UserOrderRequest;

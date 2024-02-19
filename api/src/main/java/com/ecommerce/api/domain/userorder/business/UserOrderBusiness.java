@@ -7,7 +7,7 @@ import com.ecommerce.api.domain.store.converter.StoreConverter;
 import com.ecommerce.api.domain.store.service.StoreService;
 import com.ecommerce.api.domain.storeproduct.converter.StoreProductConverter;
 import com.ecommerce.api.domain.storeproduct.service.StoreProductService;
-import com.ecommerce.api.domain.user.model.User;
+import com.ecommerce.api.resolver.model.User;
 import com.ecommerce.api.domain.userorder.controller.model.UserOrderDetailResponse;
 import com.ecommerce.api.domain.userorder.controller.model.UserOrderRequest;
 import com.ecommerce.api.domain.userorder.controller.model.UserOrderResponse;

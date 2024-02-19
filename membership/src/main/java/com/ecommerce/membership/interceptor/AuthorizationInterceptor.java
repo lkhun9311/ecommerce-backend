@@ -1,7 +1,7 @@
-package com.ecommerce.api.interceptor;
+package com.ecommerce.membership.interceptor;
 
-import com.ecommerce.api.common.error.UserErrorCode;
-import com.ecommerce.api.common.exception.ApiException;
+import com.ecommerce.membership.common.error.UserErrorCode;
+import com.ecommerce.membership.common.exception.ApiException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpMethod;
