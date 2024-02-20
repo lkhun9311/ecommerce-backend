@@ -18,6 +18,11 @@ public class TokenApiController {
 
     private final TokenBusiness tokenBusiness;
 
+    /**
+     * JWT 토큰 유효성 검사
+     * @param tokenValidateRequest 토큰 유효성 검사 요청 데이터
+     * @return 토큰 유효성 검사 응답 데이터
+     */
     @PostMapping("/validation")
     public TokenValidateResponse tokenValidate(@RequestBody TokenValidateRequest tokenValidateRequest) {
         log.info("[jwt token validation] TokenValidateRequest : {}", tokenValidateRequest);

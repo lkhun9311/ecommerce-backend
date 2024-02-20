@@ -11,6 +11,7 @@ import com.ecommerce.membership.domain.token.model.TokenDto;
 import com.ecommerce.membership.domain.token.service.TokenService;
 import com.ecommerce.membership.domain.user.model.UserDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 
 import java.util.Optional;
 
@@ -33,6 +34,7 @@ public class TokenBusiness {
      * @return TokenResponse 객체
      * @throws ApiException userEntity가 null일 경우 발생하는 예외
      */
+    @Cacheable(cacheNames = "JwtToken", key = "#userEntity.id")
     public TokenResponse issueToken(UserEntity userEntity) {
 
         return Optional.ofNullable(userEntity)

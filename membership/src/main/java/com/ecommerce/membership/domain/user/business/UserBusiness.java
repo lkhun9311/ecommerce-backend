@@ -11,6 +11,7 @@ import com.ecommerce.membership.domain.user.converter.UserConverter;
 import com.ecommerce.membership.domain.user.model.User;
 import com.ecommerce.membership.domain.user.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 
 @RequiredArgsConstructor
 @Business
@@ -65,6 +66,7 @@ public class UserBusiness {
      * @param user 현재 로그인된 사용자
      * @return 현재 로그인된 사용자 정보
      */
+    @Cacheable(cacheNames = "UserMe", key = "#user.id")
     public UserResponse me(User user) {
         UserEntity userEntity = userService.me(user);
         return userConverter.toResponse(userEntity);
