@@ -1,4 +1,4 @@
-package com.ecommerce.product.config.swagger;
+package com.ecommerce.storeadmin.config.swagger;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.v3.core.jackson.ModelResolver;

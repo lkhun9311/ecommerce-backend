@@ -1,4 +1,4 @@
-package com.ecommerce.storeadmin.domain.authorization;
+package com.ecommerce.storeadmin.domain.authorization.service;
 
 import com.ecommerce.db.store.StoreEntity;
 import com.ecommerce.db.store.StoreRepository;

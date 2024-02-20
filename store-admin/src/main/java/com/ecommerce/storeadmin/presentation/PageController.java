@@ -31,4 +31,14 @@ public class PageController {
     public ModelAndView order(){
         return new ModelAndView("order/order");
     }
+
+    /**
+     * 로그인 페이지에 대한 요청 처리
+     * "/login" 경로로 들어오는 요청 처리
+     * "login"에 해당하는 뷰(login.html) 반환
+     *
+     * @return ModelAndView 객체("login" 뷰 포함)
+     */
+    @RequestMapping("/login")
+    public ModelAndView login() { return new ModelAndView("login/login"); }
 }

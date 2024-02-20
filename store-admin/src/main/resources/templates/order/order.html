@@ -46,7 +46,7 @@
 
         async function fetchData() {
             try {
-                const response = await fetch('http://localhost:8080/api/user-order/current');
+                const response = await fetch('http://localhost:9090/order-api/api/user-order/current');
                 const data = await response.json();
                 return data.body;
             } catch (error) {
@@ -118,7 +118,7 @@
             return row;
         }
 
-        const url = "http://localhost:8081/api/sse/connect";
+        const url = "http://localhost:9090/store-admin-api/api/sse/connect";
         const eventSource = new EventSource(url);
 
         eventSource.onopen = () => {

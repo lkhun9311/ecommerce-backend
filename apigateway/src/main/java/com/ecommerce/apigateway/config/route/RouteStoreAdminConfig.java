@@ -22,6 +22,24 @@ public class RouteStoreAdminConfig {
     }
 
     /**
+     * Store Admin Default API Route 설정
+     */
+    @Bean
+    public RouteLocator gatewayStoreAdminDefaultRoutes(RouteLocatorBuilder builder) {
+        return builder.routes()
+                .route(spec ->
+                        spec.order(-1) // 필터 우선 순위 지정
+                                .path("/store-admin-api/**") // Public API 경로 정의
+                                .filters(filterSpec ->
+                                        filterSpec.filter(servicePublicApiFilter.apply(new ServicePublicApiFilter.Config())) // 필터 적용
+                                                .rewritePath("/store-admin-api(?<segment>/?.*)", "${segment}") // Public API 경로 재작성
+                                )
+                                .uri("http://localhost:8080") // 라우팅할 URI 정의
+                )
+                .build();
+    }
+
+    /**
      * Store Admin Public API Route 설정
      */
     @Bean
@@ -32,7 +50,7 @@ public class RouteStoreAdminConfig {
                                 .path("/store-admin-api/open-api/**") // Public API 경로 정의
                                 .filters(filterSpec ->
                                         filterSpec.filter(servicePublicApiFilter.apply(new ServicePublicApiFilter.Config())) // 필터 적용
-                                                .rewritePath("/order-api(?<segment>/?.*)", "${segment}") // Public API 경로 재작성
+                                                .rewritePath("/store-admin-api(?<segment>/?.*)", "${segment}") // Public API 경로 재작성
                                 )
                                 .uri("http://localhost:8080") // 라우팅할 URI 정의
                 )
@@ -49,8 +67,8 @@ public class RouteStoreAdminConfig {
                         spec.order(-1) // 필터 우선 순위 지정
                                 .path("/store-admin-api/api/**") // Private API 경로 정의
                                 .filters(filterSpec ->
-                                        filterSpec.filter(servicePrivateApiFilter.apply(new ServicePrivateApiFilter.Config())) // 필터 적용
-                                                .rewritePath("/order-api(?<segment>/?.*)", "${segment}") // Private API 경로 재작성
+                                        filterSpec.filter(servicePublicApiFilter.apply(new ServicePublicApiFilter.Config())) // 필터 적용
+                                                .rewritePath("/store-admin-api(?<segment>/?.*)", "${segment}") // Private API 경로 재작성
                                 )
                                 .uri("http://localhost:8080") // 라우팅할 URI 정의
                 )

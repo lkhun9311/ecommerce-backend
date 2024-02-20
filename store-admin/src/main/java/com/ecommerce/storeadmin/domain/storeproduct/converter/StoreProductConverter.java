@@ -19,7 +19,6 @@ public class StoreProductConverter {
                 .status(storeProductEntity.getStatus())
                 .thumbnailUrl(storeProductEntity.getThumbnailUrl())
                 .likeCount(storeProductEntity.getLikeCount())
-                .sequence(storeProductEntity.getSequence())
                 .build();
     }
 
