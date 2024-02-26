@@ -25,7 +25,8 @@ public class WebConfig implements WebMvcConfigurer {
     private final List<String> defaultExclude = List.of(
             "/",
             "/error",
-            "favicon.ico"
+            "favicon.ico",
+            "/actuator/**"
     );
 
     private final List<String> swagger = List.of(

@@ -1,0 +1,9 @@
+global:
+  scrape_interval: 5s  # Prometheus가 서버에서 Metric을 Polling하는 간격을 5초로 설정
+  evaluation_interval: 5s  # Prometheus가 규칙을 평가하는 간격을 5초로 설정
+
+scrape_configs:
+  - job_name: 'spring-server'
+    metrics_path: '/actuator/prometheus'  # Spring Boot 애플리케이션의 Metric을 수집하기 위한 경로 '/actuator/prometheus' 설정
+    static_configs:
+      - targets: ['host.docker.internal:8090']  # 대상 설정 (Spring Boot 애플리케이션의 호스트 주소와 포트 번호)

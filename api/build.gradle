@@ -50,6 +50,14 @@ dependencies {
     // logstash
     // https://mvnrepository.com/artifact/net.logstash.logback/logstash-logback-encoder
     implementation group: 'net.logstash.logback', name: 'logstash-logback-encoder', version: '7.3'
+
+    // spring boot actuator
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-actuator
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+
+    // micrometer registry prometheus
+    // https://mvnrepository.com/artifact/io.micrometer/micrometer-registry-prometheus
+    implementation 'io.micrometer:micrometer-registry-prometheus:1.11.1'
 }
 
 test {
