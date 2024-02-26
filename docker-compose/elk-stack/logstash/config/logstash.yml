@@ -1,0 +1,9 @@
+# Default Logstash Configuration (from Logstash base image)
+# https://github.com/elastic/logstash/blob/master/docker/data/logstash/config/logstash-full.yml
+http.host: "0.0.0.0" # Logstash HTTP 인터페이스가 수신 대기할 호스트 지정 ("0.0.0.0"은 모든 IP 주소를 의미)
+xpack.monitoring.elasticsearch.hosts: [ "http://elasticsearch:9200" ] # Logstash가 모니터링 데이터를 전송할 Elasticsearch 호스트 설정
+
+# X-Pack security credentials
+xpack.monitoring.enabled: true # X-Pack 모니터링 활성화, Logstash에서 Elasticsearch로 모니터링 데이터 전송
+xpack.monitoring.elasticsearch.username: elastic # Logstash가 Elasticsearch에 연결할 때 사용할 사용자 이름 설정
+xpack.monitoring.elasticsearch.password: elastic # Logstash가 Elasticsearch에 연결할 때 사용할 암호 설정

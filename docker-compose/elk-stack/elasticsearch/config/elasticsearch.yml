@@ -1,0 +1,10 @@
+# Default Elasticsearch Configuration (from Elasticsearch base image)
+# https://github.com/elastic/elasticsearch/blob/master/distribution/docker/src/docker/config/elasticsearch.yml
+cluster.name: "docker-cluster" # Elasticsearch Cluster 이름 설정
+network.host: 0.0.0.0 # Elasticsearch가 수신 대기할 네트워크 주소 설정 ("0.0.0.0"은 모든 IP 주소를 의미)
+
+# X-Pack settings
+# https://www.elastic.co/guide/en/elasticsearch/reference/current/setup-xpack.html
+xpack.license.self_generated.type: trial # X-Pack 라이선스 유형을 시험판(Trial)으로 설정
+xpack.security.enabled: true  # X-Pack 보안 기능을 활성화하고, Elasticsearch에 보안 기능 제공
+xpack.monitoring.collection.enabled: true # X-Pack 모니터링 기능을 활성화하고, Elasticsearch Cluster의 모니터링 데이터 수집 허용
