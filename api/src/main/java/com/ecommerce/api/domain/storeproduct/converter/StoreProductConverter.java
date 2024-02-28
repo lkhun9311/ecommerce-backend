@@ -50,7 +50,6 @@ public class StoreProductConverter {
                         .status(it.getStatus())
                         .thumbnailUrl(it.getThumbnailUrl())
                         .likeCount(it.getLikeCount())
-                        .sequence(it.getSequence())
                         .build()
                 )
                 .orElseThrow(() -> new ApiException(ErrorCode.NULL_POINT_ERROR));

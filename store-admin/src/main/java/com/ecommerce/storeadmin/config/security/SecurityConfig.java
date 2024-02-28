@@ -59,7 +59,7 @@ public class SecurityConfig {
                 // 로그인 폼에서 password 입력 필드의 이름 지정
                 .passwordParameter("password")
                 // 로그인 성공 시 이동할 URL 지정
-                .defaultSuccessUrl("http://localhost:9090/store-admin-api/", true)
+                .defaultSuccessUrl("http://localhost:9091/store-admin-api/", true)
         ;
 
         return httpSecurity.build();

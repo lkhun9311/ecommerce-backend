@@ -27,6 +27,4 @@ public class StoreProductResponse {
     private String thumbnailUrl;
 
     private int likeCount;
-
-    private int sequence;
 }
