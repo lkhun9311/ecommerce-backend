@@ -46,7 +46,7 @@
 
         async function fetchData() {
             try {
-                const response = await fetch('http://localhost:9091/order-api/api/user-order/current'); //TODO : URL 변경
+                const response = await fetch('http://localhost:9091/order-api/api/user-order/current');
                 const data = await response.json();
                 return data.body;
             } catch (error) {
