@@ -1,0 +1,43 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot'
+    id 'io.spring.dependency-management'
+}
+
+group = 'com.ecommerce'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    sourceCompatibility = '11'
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+ext{
+    axonVersion = "4.8.0"
+}
+
+dependencies {
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    // axon framework
+    implementation group: 'org.axonframework', name: 'axon-spring-boot-starter', version: "$axonVersion"
+    implementation group: 'org.axonframework', name: 'axon-configuration', version: "$axonVersion"
+}
+
+bootJar {
+    enabled= false
+}
+
+jar {
+    enabled = true
+}
