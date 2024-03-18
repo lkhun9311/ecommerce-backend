@@ -2,6 +2,7 @@ package com.ecommerce.apigateway.config.route;
 
 import com.ecommerce.apigateway.filter.ServicePrivateApiFilter;
 import com.ecommerce.apigateway.filter.ServicePublicApiFilter;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 import org.springframework.context.annotation.Bean;
@@ -25,7 +26,7 @@ public class RouteStoreConfig {
      * Store Public API Route 설정
      */
     @Bean
-    public RouteLocator gatewayStorePublicRoutes(RouteLocatorBuilder builder) {
+    public RouteLocator gatewayStorePublicRoutes(RouteLocatorBuilder builder, @Value("${service.store.url}") String storeServiceUrl) {
         return builder.routes()
                 .route(spec ->
                         spec.order(-1) // 필터 우선 순위 지정
@@ -34,7 +35,8 @@ public class RouteStoreConfig {
                                         filterSpec.filter(servicePublicApiFilter.apply(new ServicePublicApiFilter.Config())) // 필터 적용
                                                 .rewritePath("/store-api(?<segment>/?.*)", "${segment}") // Public API 경로 재작성
                                 )
-                                .uri("http://localhost:8082") // 라우팅할 URI 정의
+//                                .uri("http://localhost:8082") // 라우팅할 URI 정의
+                                .uri(storeServiceUrl) // 라우팅할 URI 정의
                 )
                 .build();
     }
@@ -43,7 +45,7 @@ public class RouteStoreConfig {
      * Store Private API Route 설정
      */
     @Bean
-    public RouteLocator gatewayStorePrivateRoutes(RouteLocatorBuilder builder) {
+    public RouteLocator gatewayStorePrivateRoutes(RouteLocatorBuilder builder, @Value("${service.store.url}") String storeServiceUrl) {
         return builder.routes()
                 .route(spec ->
                         spec.order(-1) // 필터 우선 순위 지정
@@ -52,7 +54,8 @@ public class RouteStoreConfig {
                                         filterSpec.filter(servicePrivateApiFilter.apply(new ServicePrivateApiFilter.Config())) // 필터 적용
                                                 .rewritePath("/store-api(?<segment>/?.*)", "${segment}") // Private API 경로 재작성
                                 )
-                                .uri("http://localhost:8082") // 라우팅할 URI 정의
+//                                .uri("http://localhost:8082") // 라우팅할 URI 정의
+                                .uri(storeServiceUrl) // 라우팅할 URI 정의
                 )
                 .build();
     }

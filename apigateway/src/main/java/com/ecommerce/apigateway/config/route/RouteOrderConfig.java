@@ -2,6 +2,7 @@ package com.ecommerce.apigateway.config.route;
 
 import com.ecommerce.apigateway.filter.ServicePrivateApiFilter;
 import com.ecommerce.apigateway.filter.ServicePublicApiFilter;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 import org.springframework.context.annotation.Bean;
@@ -25,7 +26,7 @@ public class RouteOrderConfig {
      * Order Public API Route 설정
      */
     @Bean
-    public RouteLocator gatewayOrderPublicRoutes(RouteLocatorBuilder builder) {
+    public RouteLocator gatewayOrderPublicRoutes(RouteLocatorBuilder builder, @Value("${service.order.url}") String orderServiceUrl) {
         return builder.routes()
                 .route(spec ->
                         spec.order(-1) // 필터 우선 순위 지정
@@ -35,7 +36,8 @@ public class RouteOrderConfig {
                                                 .rewritePath("/order-api(?<segment>/?.*)", "${segment}") // Public API 경로 재작성
                                 )
 //                                .uri("http://localhost:8084") // 라우팅할 URI 정의
-                                .uri("http://localhost:8090") // 라우팅할 URI 정의
+//                                .uri("http://localhost:8090") // 라우팅할 URI 정의
+                                .uri(orderServiceUrl) // 라우팅할 URI 정의
                 )
                 .build();
     }
@@ -44,7 +46,7 @@ public class RouteOrderConfig {
      * Order Private API Route 설정
      */
     @Bean
-    public RouteLocator gatewayOrderPrivateRoutes(RouteLocatorBuilder builder) {
+    public RouteLocator gatewayOrderPrivateRoutes(RouteLocatorBuilder builder, @Value("${service.order.url}") String orderServiceUrl) {
         return builder.routes()
                 .route(spec ->
                         spec.order(-1) // 필터 우선 순위 지정
@@ -54,7 +56,8 @@ public class RouteOrderConfig {
                                                 .rewritePath("/order-api(?<segment>/?.*)", "${segment}") // Private API 경로 재작성
                                 )
 //                                .uri("http://localhost:8084") // 라우팅할 URI 정의
-                                .uri("http://localhost:8090") // 라우팅할 URI 정의
+//                                .uri("http://localhost:8090") // 라우팅할 URI 정의
+                                .uri(orderServiceUrl) // 라우팅할 URI 정의
                 )
                 .build();
     }

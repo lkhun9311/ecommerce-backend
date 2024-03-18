@@ -2,6 +2,7 @@ package com.ecommerce.apigateway.config.route;
 
 import com.ecommerce.apigateway.filter.ServicePrivateApiFilter;
 import com.ecommerce.apigateway.filter.ServicePublicApiFilter;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 import org.springframework.context.annotation.Bean;
@@ -25,7 +26,7 @@ public class RouteMembershipConfig {
      * Membership Public API Route 설정
      */
     @Bean
-    public RouteLocator gatewayMembershipPublicRoutes(RouteLocatorBuilder builder) {
+    public RouteLocator gatewayMembershipPublicRoutes(RouteLocatorBuilder builder, @Value("${service.membership.url}") String membershipServiceUrl) {
         return builder.routes()
                 .route(spec ->
                         spec.order(-1) // 필터 우선 순위 지정
@@ -34,7 +35,8 @@ public class RouteMembershipConfig {
                                         filterSpec.filter(servicePublicApiFilter.apply(new ServicePublicApiFilter.Config())) // 필터 적용
                                                 .rewritePath("/membership-api(?<segment>/?.*)", "${segment}") // Public API 경로 재작성
                                 )
-                                .uri("http://localhost:8081") // 라우팅할 URI 정의
+//                                .uri("http://localhost:8081") // 라우팅할 URI 정의
+                                .uri(membershipServiceUrl) // 라우팅할 URI 정의
                 )
                 .build();
     }
@@ -43,7 +45,7 @@ public class RouteMembershipConfig {
      * Membership Private API Route 설정
      */
     @Bean
-    public RouteLocator gatewayMembershipPrivateRoutes(RouteLocatorBuilder builder) {
+    public RouteLocator gatewayMembershipPrivateRoutes(RouteLocatorBuilder builder, @Value("${service.membership.url}") String membershipServiceUrl) {
         return builder.routes()
                 .route(spec ->
                         spec.order(-1) // 필터 우선 순위 지정
@@ -52,7 +54,8 @@ public class RouteMembershipConfig {
                                         filterSpec.filter(servicePrivateApiFilter.apply(new ServicePrivateApiFilter.Config())) // 필터 적용
                                                 .rewritePath("/membership-api(?<segment>/?.*)", "${segment}") // Private API 경로 재작성
                                 )
-                                .uri("http://localhost:8081") // 라우팅할 URI 정의
+//                                .uri("http://localhost:8081") // 라우팅할 URI 정의
+                                .uri(membershipServiceUrl) // 라우팅할 URI 정의
                 )
                 .build();
     }

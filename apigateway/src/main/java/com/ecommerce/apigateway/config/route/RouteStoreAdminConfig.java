@@ -1,6 +1,7 @@
 package com.ecommerce.apigateway.config.route;
 
 import com.ecommerce.apigateway.filter.ServicePublicApiFilter;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 import org.springframework.context.annotation.Bean;
@@ -22,7 +23,7 @@ public class RouteStoreAdminConfig {
      * Store Admin Default API Route 설정
      */
     @Bean
-    public RouteLocator gatewayStoreAdminDefaultRoutes(RouteLocatorBuilder builder) {
+    public RouteLocator gatewayStoreAdminDefaultRoutes(RouteLocatorBuilder builder, @Value("${service.store.admin.url}") String storeAdminServiceUrl) {
         return builder.routes()
                 .route(spec ->
                         spec.order(-1) // 필터 우선 순위 지정
@@ -31,7 +32,8 @@ public class RouteStoreAdminConfig {
                                         filterSpec.filter(servicePublicApiFilter.apply(new ServicePublicApiFilter.Config())) // 필터 적용
                                                 .rewritePath("/store-admin-api(?<segment>/?.*)", "${segment}") // Public API 경로 재작성
                                 )
-                                .uri("http://localhost:8080") // 라우팅할 URI 정의
+//                                .uri("http://localhost:8080") // 라우팅할 URI 정의
+                                .uri(storeAdminServiceUrl) // 라우팅할 URI 정의
                 )
                 .build();
     }
@@ -40,7 +42,7 @@ public class RouteStoreAdminConfig {
      * Store Admin Public API Route 설정
      */
     @Bean
-    public RouteLocator gatewayStoreAdminPublicRoutes(RouteLocatorBuilder builder) {
+    public RouteLocator gatewayStoreAdminPublicRoutes(RouteLocatorBuilder builder, @Value("${service.store.admin.url}") String storeAdminServiceUrl) {
         return builder.routes()
                 .route(spec ->
                         spec.order(-1) // 필터 우선 순위 지정
@@ -49,7 +51,8 @@ public class RouteStoreAdminConfig {
                                         filterSpec.filter(servicePublicApiFilter.apply(new ServicePublicApiFilter.Config())) // 필터 적용
                                                 .rewritePath("/store-admin-api(?<segment>/?.*)", "${segment}") // Public API 경로 재작성
                                 )
-                                .uri("http://localhost:8080") // 라우팅할 URI 정의
+//                                .uri("http://localhost:8080") // 라우팅할 URI 정의
+                                .uri(storeAdminServiceUrl) // 라우팅할 URI 정의
                 )
                 .build();
     }
