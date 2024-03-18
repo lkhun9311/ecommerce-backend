@@ -36,6 +36,9 @@ database/data/*
 database/initdb.d/*
 docker-compose.yaml
 .env
+order-reference
+order-reference.iml
+product-reference
 
 ### NetBeans ###
 /nbproject/private/
