@@ -1,7 +1,7 @@
 package com.ecommerce.store.domain.store.controller.model;
 
-import com.ecommerce.db.store.enums.StoreCategory;
-import com.ecommerce.db.store.enums.StoreStatus;
+import com.ecommerce.store.entity.enums.StoreCategory;
+import com.ecommerce.store.entity.enums.StoreStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

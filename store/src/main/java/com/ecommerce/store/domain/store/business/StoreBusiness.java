@@ -1,7 +1,5 @@
 package com.ecommerce.store.domain.store.business;
 
-import com.ecommerce.db.store.StoreEntity;
-import com.ecommerce.db.store.enums.StoreCategory;
 import com.ecommerce.store.common.annotation.Business;
 import com.ecommerce.store.common.error.UserErrorCode;
 import com.ecommerce.store.common.exception.ApiException;
@@ -9,6 +7,8 @@ import com.ecommerce.store.domain.store.controller.model.StoreResponse;
 import com.ecommerce.store.domain.store.service.StoreService;
 import com.ecommerce.store.domain.store.controller.model.StoreRegisterRequest;
 import com.ecommerce.store.domain.store.converter.StoreConverter;
+import com.ecommerce.store.entity.StoreEntity;
+import com.ecommerce.store.entity.enums.StoreCategory;
 import com.ecommerce.store.resolver.model.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.CachePut;

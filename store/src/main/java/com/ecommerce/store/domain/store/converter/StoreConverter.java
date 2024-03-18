@@ -1,11 +1,11 @@
 package com.ecommerce.store.domain.store.converter;
 
-import com.ecommerce.db.store.StoreEntity;
 import com.ecommerce.store.common.annotation.Converter;
 import com.ecommerce.store.common.error.ErrorCode;
 import com.ecommerce.store.common.exception.ApiException;
 import com.ecommerce.store.domain.store.controller.model.StoreResponse;
 import com.ecommerce.store.domain.store.controller.model.StoreRegisterRequest;
+import com.ecommerce.store.entity.StoreEntity;
 
 import java.util.Optional;
 

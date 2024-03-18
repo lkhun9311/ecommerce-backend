@@ -1,9 +1,9 @@
 package com.ecommerce.store.domain.store.controller;
 
-import com.ecommerce.db.store.enums.StoreCategory;
 import com.ecommerce.store.common.api.Api;
 import com.ecommerce.store.domain.store.business.StoreBusiness;
 import com.ecommerce.store.domain.store.controller.model.StoreResponse;
+import com.ecommerce.store.entity.enums.StoreCategory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

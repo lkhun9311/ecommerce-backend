@@ -1,11 +1,11 @@
 package com.ecommerce.store.domain.store.service;
 
-import com.ecommerce.db.store.StoreEntity;
-import com.ecommerce.db.store.StoreRepository;
-import com.ecommerce.db.store.enums.StoreCategory;
-import com.ecommerce.db.store.enums.StoreStatus;
 import com.ecommerce.store.common.error.ErrorCode;
 import com.ecommerce.store.common.exception.ApiException;
+import com.ecommerce.store.entity.StoreEntity;
+import com.ecommerce.store.entity.enums.StoreCategory;
+import com.ecommerce.store.entity.enums.StoreStatus;
+import com.ecommerce.store.repository.StoreRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
