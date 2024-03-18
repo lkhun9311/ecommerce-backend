@@ -1,12 +1,12 @@
 package com.ecommerce.membership.domain.token.converter;
 
-import com.ecommerce.db.user.UserEntity;
 import com.ecommerce.membership.common.annotation.Converter;
 import com.ecommerce.membership.common.error.ErrorCode;
 import com.ecommerce.membership.common.exception.ApiException;
 import com.ecommerce.membership.domain.token.controller.model.TokenResponse;
 import com.ecommerce.membership.domain.token.controller.model.UserClaim;
 import com.ecommerce.membership.domain.token.model.TokenDto;
+import com.ecommerce.membership.entity.UserEntity;
 import lombok.RequiredArgsConstructor;
 
 import java.util.Objects;

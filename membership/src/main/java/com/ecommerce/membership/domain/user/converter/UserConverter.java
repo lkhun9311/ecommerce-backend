@@ -1,11 +1,11 @@
 package com.ecommerce.membership.domain.user.converter;
 
-import com.ecommerce.db.user.UserEntity;
 import com.ecommerce.membership.common.annotation.Converter;
 import com.ecommerce.membership.common.error.ErrorCode;
 import com.ecommerce.membership.common.exception.ApiException;
 import com.ecommerce.membership.domain.user.controller.model.UserRegisterRequest;
 import com.ecommerce.membership.domain.user.controller.model.UserResponse;
+import com.ecommerce.membership.entity.UserEntity;
 import lombok.RequiredArgsConstructor;
 
 import java.util.Optional;

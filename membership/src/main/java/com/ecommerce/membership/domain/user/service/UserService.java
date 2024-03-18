@@ -1,12 +1,12 @@
 package com.ecommerce.membership.domain.user.service;
 
-import com.ecommerce.db.user.UserEntity;
-import com.ecommerce.db.user.UserRepository;
-import com.ecommerce.db.user.enums.UserStatus;
 import com.ecommerce.membership.common.error.ErrorCode;
 import com.ecommerce.membership.common.error.UserErrorCode;
 import com.ecommerce.membership.common.exception.ApiException;
 import com.ecommerce.membership.domain.user.model.User;
+import com.ecommerce.membership.entity.UserEntity;
+import com.ecommerce.membership.entity.enums.UserStatus;
+import com.ecommerce.membership.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

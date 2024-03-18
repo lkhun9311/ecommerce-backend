@@ -1,6 +1,5 @@
 package com.ecommerce.membership.domain.user.business;
 
-import com.ecommerce.db.user.UserEntity;
 import com.ecommerce.membership.common.annotation.Business;
 import com.ecommerce.membership.domain.token.business.TokenBusiness;
 import com.ecommerce.membership.domain.token.controller.model.TokenResponse;
@@ -10,6 +9,7 @@ import com.ecommerce.membership.domain.user.controller.model.UserResponse;
 import com.ecommerce.membership.domain.user.converter.UserConverter;
 import com.ecommerce.membership.domain.user.model.User;
 import com.ecommerce.membership.domain.user.service.UserService;
+import com.ecommerce.membership.entity.UserEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.Cacheable;
 

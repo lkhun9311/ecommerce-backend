@@ -1,12 +1,12 @@
 package com.ecommerce.membership.domain.token.service;
 
-import com.ecommerce.db.user.enums.UserStatus;
 import com.ecommerce.membership.common.error.ErrorCode;
 import com.ecommerce.membership.common.exception.ApiException;
 import com.ecommerce.membership.domain.token.controller.model.UserClaim;
 import com.ecommerce.membership.domain.token.ifs.TokenHelperIfs;
 import com.ecommerce.membership.domain.token.model.TokenDto;
 import com.ecommerce.membership.domain.user.model.UserDto;
+import com.ecommerce.membership.entity.enums.UserStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

@@ -26,10 +26,10 @@ public class JwtTokenHelper implements TokenHelperIfs {
     @Value("${token.secret.key}")
     private String secretKey;
 
-    @Value("${token.access-token.plus-hour}")
+    @Value("${token.access.token.plus.hour}")
     private Long accessTokenPlusHour;
 
-    @Value("${token.refresh-token.plus-hour}")
+    @Value("${token.refresh.token.plus.hour}")
     private Long refreshTokenPlusHour;
 
     /**

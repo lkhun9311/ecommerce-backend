@@ -1,6 +1,5 @@
 package com.ecommerce.membership.domain.token.business;
 
-import com.ecommerce.db.user.UserEntity;
 import com.ecommerce.membership.common.annotation.Business;
 import com.ecommerce.membership.common.error.ErrorCode;
 import com.ecommerce.membership.common.exception.ApiException;
@@ -10,6 +9,7 @@ import com.ecommerce.membership.domain.token.converter.TokenConverter;
 import com.ecommerce.membership.domain.token.model.TokenDto;
 import com.ecommerce.membership.domain.token.service.TokenService;
 import com.ecommerce.membership.domain.user.model.UserDto;
+import com.ecommerce.membership.entity.UserEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.Cacheable;
 

@@ -1,10 +1,10 @@
 package com.ecommerce.membership.resolver;
 
-import com.ecommerce.db.user.enums.UserStatus;
 import com.ecommerce.membership.common.annotation.UserSession;
 import com.ecommerce.membership.common.error.UserErrorCode;
 import com.ecommerce.membership.common.exception.ApiException;
 import com.ecommerce.membership.domain.user.model.User;
+import com.ecommerce.membership.entity.enums.UserStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.MethodParameter;
 import org.springframework.stereotype.Component;

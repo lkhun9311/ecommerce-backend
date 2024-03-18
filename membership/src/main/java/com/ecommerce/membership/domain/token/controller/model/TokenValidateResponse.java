@@ -1,6 +1,6 @@
 package com.ecommerce.membership.domain.token.controller.model;
 
-import com.ecommerce.db.user.enums.UserStatus;
+import com.ecommerce.membership.entity.enums.UserStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
