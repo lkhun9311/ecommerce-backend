@@ -1,0 +1,233 @@
+version: "3"
+services:
+  mysql:
+    image: mysql:8.0.29
+    networks:
+      - ecommerce_network
+    restart: always
+    command:
+      - --lower_case_table_names=1
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+    container_name: mysql
+    ports:
+      - "3306:3306"
+    environment:
+      - TZ=Asia/Seoul
+      - MYSQL_ROOT_PASSWORD=root1234!!
+    volumes:
+      - ./database/conf.d:/etc/mysql/conf.d
+      - ./database/data:/var/lib/mysql
+      - ./database/initdb.d:/docker-entrypoint-initdb.d
+    env_file: .env
+
+  rabbitmq:
+    image: rabbitmq:latest
+    networks:
+      - ecommerce_network
+    ports:
+      - "5672:5672" # rabbitmq amqp port
+      - "15672:15672" # rabbitmq 관리자 도구 port
+    environment:
+      - RABBITMQ_DEFAULT_USER=admin # rabbitmq 기본 사용자 이름
+      - RABBITMQ_DEFAULT_PASS=admin # rabbitmq 기본 사용자 비밀번호
+      # rabbitmq management 활성화 명령어
+      # rabbitmq-plugins enable rabbitmq_management
+
+  redis:
+    image: redis
+    networks:
+      - ecommerce_network
+    command: redis-server
+    container_name: redis
+    ports:
+      - "6379:6379"
+
+  axonserver:
+    image: axoniq/axonserver:4.6.3-jdk-11-dev
+    networks:
+      - ecommerce_network
+    environment:
+      - AXONIQ_AXONSERVER_DEVMODE_ENABLED=true
+    container_name: axon-server
+    volumes:
+      - axonserver-data:/data
+      - axonserver-events:/eventdata
+      - axonserver-config:/config:ro
+    ports:
+      - '8024:8024'
+      - '8124:8124'
+
+  apigateway:
+    image: service-apigateway:0.0.1-SNAPSHOT
+    networks:
+      - ecommerce_network
+    ports:
+      - "9091:8080"
+    environment:
+      - SERVICE_MEMBERSHIP_URL=http://membership:8080
+      - SERVICE_ORDER_URL=http://order:8080
+      - SERVICE_PRODUCT_URL=http://product:8080
+      - SERVICE_STORE_URL=http://store:8080
+      - SERVICE_STORE_ADMIN_URL=http://store-admin:8080
+
+  membership:
+    image: service-membership:0.0.1-SNAPSHOT
+    networks:
+      - ecommerce_network
+    ports:
+      - "8081:8080"
+    depends_on:
+      - mysql
+      - redis
+    environment:
+      - AXON_AXONSERVER_SERVERS=axon-server:8124
+      - AXON_SERIALIZER_EVENTS=jackson
+      - AXON_SERIALIZER_MESSAGES=jackson
+      - AXON_SERIALIZER_GENERAL=xstream
+      - SPRING_JPA_SHOW_SQL=true
+      - SPRING_JPA_PROPERTIES_HIBERNATE_FORMAT_SQL=true
+      - SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.MySQL5InnoDBDialect
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/ecommercedb?useSSL=false&useUnicode=true&allowPublicKeyRetrieval=true
+      - SPRING_DATASOURCE_DRIVER_CLASS_NAME=com.mysql.cj.jdbc.Driver
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root1234!!
+      - TOKEN_SECRET_KEY=EcommerceJwtTokenHelperSecretKeyValue123!!!
+      - TOKEN_ACCESS_TOKEN_PLUS_HOUR=1
+      - TOKEN_REFRESH_TOKEN_PLUS_HOUR=12
+      - SPRING_REDIS_HOST=redis
+      - SPRING_REDIS_PORT=6379
+
+  order:
+    image: service-order:0.0.1-SNAPSHOT
+    networks:
+      - ecommerce_network
+    ports:
+      - "8084:8080"
+    depends_on:
+      - mysql
+      - rabbitmq
+      - redis
+      - axonserver
+    environment:
+      - AXON_AXONSERVER_SERVERS=axon-server:8124
+      - AXON_SERIALIZER_EVENTS=jackson
+      - AXON_SERIALIZER_MESSAGES=jackson
+      - AXON_SERIALIZER_GENERAL=xstream
+      - SPRING_RABBITMQ_HOST=rabbitmq
+      - SPRING_RABBITMQ_PORT=5672
+      - SPRING_RABBITMQ_USERNAME=admin
+      - SPRING_RABBITMQ_PASSWORD=admin
+      - SPRING_JPA_SHOW_SQL=true
+      - SPRING_JPA_PROPERTIES_HIBERNATE_FORMAT_SQL=true
+      - SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.MySQL5InnoDBDialect
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/ecommercedb?useSSL=false&useUnicode=true&allowPublicKeyRetrieval=true
+      - SPRING_DATASOURCE_DRIVER_CLASS_NAME=com.mysql.cj.jdbc.Driver
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root1234!!
+      - SPRING_REDIS_HOST=redis
+      - SPRING_REDIS_PORT=6379
+
+  product:
+    image: service-product:0.0.1-SNAPSHOT
+    networks:
+      - ecommerce_network
+    ports:
+      - "8083:8080"
+    depends_on:
+      - mysql
+      - redis
+    environment:
+      - AXON_AXONSERVER_SERVERS=axon-server:8124
+      - AXON_SERIALIZER_EVENTS=jackson
+      - AXON_SERIALIZER_MESSAGES=jackson
+      - AXON_SERIALIZER_GENERAL=xstream
+      - SPRING_JPA_SHOW_SQL=true
+      - SPRING_JPA_PROPERTIES_HIBERNATE_FORMAT_SQL=true
+      - SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.MySQL5InnoDBDialect
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/ecommercedb?useSSL=false&useUnicode=true&allowPublicKeyRetrieval=true
+      - SPRING_DATASOURCE_DRIVER_CLASS_NAME=com.mysql.cj.jdbc.Driver
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root1234!!
+      - SPRING_REDIS_HOST=redis
+      - SPRING_REDIS_PORT=6379
+
+  store:
+    image: service-store:0.0.1-SNAPSHOT
+    networks:
+      - ecommerce_network
+    ports:
+      - "8082:8080"
+    depends_on:
+      - mysql
+      - redis
+    environment:
+      - AXON_AXONSERVER_SERVERS=axon-server:8124
+      - AXON_SERIALIZER_EVENTS=jackson
+      - AXON_SERIALIZER_MESSAGES=jackson
+      - AXON_SERIALIZER_GENERAL=xstream
+      - SPRING_JPA_SHOW_SQL=true
+      - SPRING_JPA_PROPERTIES_HIBERNATE_FORMAT_SQL=true
+      - SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.MySQL5InnoDBDialect
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/ecommercedb?useSSL=false&useUnicode=true&allowPublicKeyRetrieval=true
+      - SPRING_DATASOURCE_DRIVER_CLASS_NAME=com.mysql.cj.jdbc.Driver
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root1234!!
+      - SPRING_REDIS_HOST=redis
+      - SPRING_REDIS_PORT=6379
+
+  store-admin:
+    image: service-store-admin:0.0.1-SNAPSHOT
+    networks:
+      - ecommerce_network
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql
+      - rabbitmq
+    environment:
+      - AXON_AXONSERVER_SERVERS=axon-server:8124
+      - AXON_SERIALIZER_EVENTS=jackson
+      - AXON_SERIALIZER_MESSAGES=jackson
+      - AXON_SERIALIZER_GENERAL=xstream
+      - SPRING_APPLICATION_NAME=store-admin
+      - SPRING_RABBITMQ_HOST=rabbitmq
+      - SPRING_RABBITMQ_PORT=5672
+      - SPRING_RABBITMQ_USERNAME=admin
+      - SPRING_RABBITMQ_PASSWORD=admin
+      - SPRING_JPA_SHOW_SQL=true
+      - SPRING_JPA_PROPERTIES_HIBERNATE_FORMAT_SQL=true
+      - SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.MySQL5InnoDBDialect
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/ecommercedb?useSSL=false&useUnicode=true&allowPublicKeyRetrieval=true
+      - SPRING_DATASOURCE_DRIVER_CLASS_NAME=com.mysql.cj.jdbc.Driver
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root1234!!
+
+volumes:
+  axonserver-data:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: ./axon-server-se/data
+  axonserver-events:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: ./axon-server-se/events
+  axonserver-config:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: ./axon-server-se/config
+
+networks:
+  ecommerce_network:
+    driver: bridge

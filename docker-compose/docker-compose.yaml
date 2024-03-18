@@ -2,6 +2,8 @@ version: "3"
 services:
   db:
     image: mysql:8.0.29
+    networks:
+      - ecommerce_network
     restart: always
     command:
       - --lower_case_table_names=1
@@ -19,6 +21,8 @@ services:
 
   rabbitmq:
     image: rabbitmq:latest
+    networks:
+      - ecommerce_network
     ports:
       - "5672:5672" # rabbitmq amqp port
       - "15672:15672" # rabbitmq 관리자 도구 port
@@ -30,7 +34,13 @@ services:
 
   redis:
     image: redis
+    networks:
+      - ecommerce_network
     command: redis-server
     container_name: redis
     ports:
       - "6379:6379"
+
+networks:
+  ecommerce_network:
+    driver: bridge

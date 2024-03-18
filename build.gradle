@@ -24,3 +24,7 @@ bootJar {
 jar {
     enabled = false
 }
+
+bootBuildImage{
+    enabled = false
+}
