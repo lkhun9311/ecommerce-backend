@@ -1,0 +1,134 @@
+package com.ecommerce.order.domain.userorder.business;
+
+import com.ecommerce.order.common.annotation.Business;
+import com.ecommerce.order.domain.userorder.controller.model.UserOrderRequest;
+import com.ecommerce.order.domain.userorder.controller.model.UserOrderResponse;
+import com.ecommerce.order.domain.userorder.converter.store.StoreConverter;
+import com.ecommerce.order.domain.userorder.converter.storeproduct.StoreProductConverter;
+import com.ecommerce.order.domain.userorder.converter.userorder.UserOrderConverter;
+import com.ecommerce.order.domain.userorder.producer.UserOrderProducer;
+import com.ecommerce.order.domain.userorder.service.UserOrderService;
+import com.ecommerce.order.domain.userorderproduct.converter.UserOrderProductConverter;
+import com.ecommerce.order.domain.userorderproduct.service.UserOrderProductService;
+import com.ecommerce.order.resolver.model.User;
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
+@Business
+public class UserOrderBusiness {
+
+    private final UserOrderService userOrderService;
+    private final UserOrderProductService userOrderProductService;
+//    private final StoreProductService storeProductService;
+//    private final StoreService storeService;
+    private final UserOrderConverter userOrderConverter;
+    private final UserOrderProductConverter userOrderProductConverter;
+    private final StoreProductConverter storeProductConverter;
+    private final StoreConverter storeConverter;
+    private final UserOrderProducer userOrderProducer;
+
+    /**
+     * 사용자의 주문을 처리하고 응답 반환
+     *
+     * @param user 사용자 정보
+     * @param body 주문 요청 정보
+     * @return 주문 응답 정보
+     */
+    public UserOrderResponse userOrder(User user, UserOrderRequest body) {
+        return null;
+//        List<StoreProductEntity> storeProductEntityList = body.getStoreProductIdList().stream()
+//                .map(storeProductService::getStoreProductWithThrow)
+//                .collect(Collectors.toList());
+//
+//        UserOrderEntity userOrderEntity = userOrderConverter.toEntity(user, body.getStoreId(), storeProductEntityList);
+//        UserOrderEntity newUserOrderEntity = userOrderService.order(userOrderEntity);
+//
+//        List<UserOrderProductEntity> userOrderProductEntityList = storeProductEntityList.stream()
+//                .map(it -> userOrderProductConverter.toEntity(newUserOrderEntity, it))
+//                .collect(Collectors.toList());
+//
+//        // 주문 내역 기록(UserOrderProductStatus.REGISTERED)
+//        userOrderProductEntityList.forEach(userOrderProductService::order);
+//
+//        // 비동기로 상점에 주문 발행(produce)
+//        userOrderProducer.sendOrder(newUserOrderEntity);
+//
+//        return userOrderConverter.toResponse(newUserOrderEntity);
+    }
+
+    /**
+     * 특정 주문에 대한 정보 처리 로직
+     *
+     * @param userOrderEntity 사용자 주문 엔티티
+     * @return 주문 상세 응답 정보
+     */
+//    private UserOrderDetailResponse processOrder(UserOrderEntity userOrderEntity) {
+//        // 특정 주문의 상품 리스트 가져오기
+//        List<UserOrderProductEntity> userOrderProductEntityList = userOrderProductService.getUserOrderProduct(userOrderEntity.getId());
+//
+//        // 주문한 상점의 상품 리스트 가져오기
+//        List<StoreProductEntity> storeProductEntityList = userOrderProductEntityList.stream()
+//                .map(userOrderProductEntity ->
+//                        storeProductService.getStoreProductWithThrow(userOrderProductEntity.getStoreProductId())
+//                )
+//                .collect(Collectors.toList());
+//
+//        // 사용자가 최근 주문한 상점의 상품 가져오기
+//        Optional<StoreProductEntity> firstEntity = storeProductEntityList.stream().findFirst();
+//
+//        // 사용자가 최근 주문한 상점 가져오기
+//        StoreEntity storeEntity;
+//        if (firstEntity.isPresent()) {
+//            storeEntity = storeService.getStoreWithThrow(firstEntity.get().getStoreId());
+//        } else {
+//            throw new ApiException(ErrorCode.NULL_POINT_ERROR);
+//        }
+//
+//        return UserOrderDetailResponse.builder()
+//                .userOrderResponse(userOrderConverter.toResponse(userOrderEntity))
+//                .storeProductResponseList(storeProductConverter.toRespnonse(storeProductEntityList))
+//                .storeResponse(storeConverter.toResponse(storeEntity))
+//                .build();
+//    }
+//
+//    /**
+//     * 사용자의 현재 주문 내역 조회
+//     *
+//     * @param user 사용자 정보
+//     * @return 현재 주문 내역에 대한 상세 응답 리스트
+//     */
+//    @Cacheable(cacheNames = "UserOrderCurrent", key = "#user.id")
+//    public List<UserOrderDetailResponse> currentOrder(User user) {
+//        List<UserOrderEntity> userOrderEntityList = userOrderService.currentOrderList(user.getId());
+//        return userOrderEntityList.stream()
+//                .map(this::processOrder)
+//                .collect(Collectors.toList());
+//    }
+//
+//    /**
+//     * 사용자의 과거 주문 내역 조회
+//     *
+//     * @param user 사용자 정보
+//     * @return 과거 주문 내역에 대한 상세 응답 리스트
+//     */
+//    @Cacheable(cacheNames = "UserOrderHistory", key = "#user.id")
+//    public List<UserOrderDetailResponse> orderHistory(User user) {
+//        List<UserOrderEntity> userOrderEntityList = userOrderService.historyOrderList(user.getId());
+//        return userOrderEntityList.stream()
+//                .map(this::processOrder)
+//                .collect(Collectors.toList());
+//    }
+//
+//    /**
+//     * 특정 주문에 대한 상세 정보 조회
+//     *
+//     * @param user 사용자 정보
+//     * @param orderId 주문 ID
+//     * @return 특정 주문에 대한 상세 응답
+//     */
+//    @Cacheable(cacheNames = "UserOrderRead", key = "#orderId")
+//    public UserOrderDetailResponse readOrder(User user, Long orderId) {
+//        UserOrderEntity userOrderEntity = userOrderService.getUserOrderWithoutThrow(orderId, user.getId());
+//        return processOrder(userOrderEntity);
+//    }
+}

@@ -28,6 +28,14 @@ out/
 **/src/main/resources/application.yaml
 application.yaml
 !/store-admin/src/main/resources/templates/
+axon-server-se/config/*
+axon-server-se/data/*
+axon-server-se/events/*
+database/conf.d/*
+database/data/*
+database/initdb.d/*
+docker-compose.yaml
+.env
 
 ### NetBeans ###
 /nbproject/private/
@@ -38,4 +46,3 @@ application.yaml
 
 ### VS Code ###
 .vscode/
-
