@@ -1,6 +1,6 @@
 package com.ecommerce.product.resolver.model;
 
-import com.ecommerce.db.user.enums.UserStatus;
+import com.ecommerce.product.entity.enums.UserStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

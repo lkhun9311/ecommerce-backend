@@ -1,30 +1,29 @@
 package com.ecommerce.product.domain.storeproduct.controller.model;
 
-import com.ecommerce.common.model.enums.StoreProductStatus;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
-public class StoreProductResponse {
-
-    private String id;
-
+public class StoreProductCreateRequest {
+    @NotNull
     private Long storeId;
 
+    @NotBlank
     private String name;
 
+    @NotNull
     private BigDecimal amount;
 
-    private StoreProductStatus status;
-
+    @NotBlank
     private String thumbnailUrl;
 
-    private int likeCount;
+    @NotBlank
+    private String color;
 }

@@ -1,9 +1,9 @@
 package com.ecommerce.product.resolver;
 
-import com.ecommerce.db.user.enums.UserStatus;
 import com.ecommerce.product.common.annotation.UserSession;
 import com.ecommerce.product.common.error.UserErrorCode;
 import com.ecommerce.product.common.exception.ApiException;
+import com.ecommerce.product.entity.enums.UserStatus;
 import com.ecommerce.product.resolver.model.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.MethodParameter;
