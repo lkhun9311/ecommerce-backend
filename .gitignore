@@ -36,9 +36,9 @@ database/data/*
 database/initdb.d/*
 docker-compose.yaml
 .env
-order-reference
 order-reference.iml
-product-reference
+!/order-reference/
+!/product-reference/
 
 ### NetBeans ###
 /nbproject/private/
@@ -48,4 +48,5 @@ product-reference
 /.nb-gradle/
 
 ### VS Code ###
-.vscode/
+.vscode/!/product-reference/
+
