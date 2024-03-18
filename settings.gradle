@@ -7,4 +7,5 @@ include 'membership'
 include 'store'
 include 'product'
 include 'order'
+include 'common'
 
