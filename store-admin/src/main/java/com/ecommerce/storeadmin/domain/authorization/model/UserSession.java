@@ -1,7 +1,7 @@
 package com.ecommerce.storeadmin.domain.authorization.model;
 
-import com.ecommerce.db.storeuser.enums.StoreUserRole;
-import com.ecommerce.db.storeuser.enums.StoreUserStatus;
+import com.ecommerce.storeadmin.entity.enums.StoreUserRole;
+import com.ecommerce.storeadmin.entity.enums.StoreUserStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

@@ -1,13 +1,10 @@
 package com.ecommerce.storeadmin.domain.authorization.service;
 
-import com.ecommerce.db.store.StoreEntity;
-import com.ecommerce.db.store.StoreRepository;
-import com.ecommerce.db.store.enums.StoreStatus;
-import com.ecommerce.db.storeuser.StoreUserEntity;
 import com.ecommerce.storeadmin.common.error.ErrorCode;
 import com.ecommerce.storeadmin.common.exception.ApiException;
 import com.ecommerce.storeadmin.domain.authorization.model.UserSession;
 import com.ecommerce.storeadmin.domain.storeuser.service.StoreUserService;
+import com.ecommerce.storeadmin.entity.StoreUserEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -24,7 +21,7 @@ import org.springframework.stereotype.Service;
 public class AuthorizationService implements UserDetailsService {
 
     private final StoreUserService storeUserService;
-    private final StoreRepository storeRepository;
+//    private final StoreRepository storeRepository;
 
     /**
      * Spring Security의 UserDetailsService 구현
@@ -42,23 +39,23 @@ public class AuthorizationService implements UserDetailsService {
                 .orElseThrow(() -> new UsernameNotFoundException(username));
 
         // 해당 가게 사용자가 속한 상점 정보 조회
-        StoreEntity storeEntity = storeRepository.findFirstByIdAndStatusOrderByIdDesc(
-                storeUserEntity.getStoreId(),
-                StoreStatus.REGISTERED
-        ).orElseThrow(() -> new ApiException(ErrorCode.NULL_POINT_ERROR));
+//        StoreEntity storeEntity = storeRepository.findFirstByIdAndStatusOrderByIdDesc(
+//                storeUserEntity.getStoreId(),
+//                StoreStatus.REGISTERED
+//        ).orElseThrow(() -> new ApiException(ErrorCode.NULL_POINT_ERROR));
 
         // UserDetails 객체를 생성하고 반환
         return UserSession.builder()
                 .userId(storeUserEntity.getId())
                 .email(storeUserEntity.getEmail())
                 .password(storeUserEntity.getPassword())
-                .status(storeUserEntity.getStatus())
+//                .status(storeUserEntity.getStatus())
                 .role(storeUserEntity.getRole())
                 .registeredAt(storeUserEntity.getRegisteredAt())
                 .unregisteredAt(storeUserEntity.getUnregisteredAt())
                 .lastLoginAt(storeUserEntity.getLastLoginAt())
-                .storeId(storeEntity.getId())
-                .storeName(storeEntity.getName())
+//                .storeId(storeEntity.getId())
+//                .storeName(storeEntity.getName())
                 .build();
     }
 }

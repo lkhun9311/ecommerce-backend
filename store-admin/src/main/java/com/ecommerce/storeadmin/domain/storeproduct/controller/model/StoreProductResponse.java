@@ -1,6 +1,6 @@
 package com.ecommerce.storeadmin.domain.storeproduct.controller.model;
 
-import com.ecommerce.db.storeproduct.enums.StoreProductStatus;
+//import com.ecommerce.db.storeproduct.enums.StoreProductStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,7 +20,7 @@ public class StoreProductResponse {
 
     private BigDecimal amount;
 
-    private StoreProductStatus status;
+//    private StoreProductStatus status;
 
     private String thumbnailUrl;
 

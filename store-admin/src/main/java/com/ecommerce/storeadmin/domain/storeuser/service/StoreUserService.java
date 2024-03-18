@@ -1,8 +1,8 @@
 package com.ecommerce.storeadmin.domain.storeuser.service;
 
-import com.ecommerce.db.storeuser.StoreUserEntity;
-import com.ecommerce.db.storeuser.StoreUserRepository;
-import com.ecommerce.db.storeuser.enums.StoreUserStatus;
+import com.ecommerce.storeadmin.entity.StoreUserEntity;
+import com.ecommerce.storeadmin.entity.enums.StoreUserStatus;
+import com.ecommerce.storeadmin.repository.StoreUserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
