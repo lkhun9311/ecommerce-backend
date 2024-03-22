@@ -5,7 +5,7 @@
 - **온라인 쇼핑몰**을 주제로 해서 **새로운 기술을 적용하고 문제를 해결하는 용도**로 프로젝트를 진행하고 있습니다.
 - 앞으로 백엔드 개발 이외에 **프론트엔드 개발, DevOps도 진행 예정**입니다.  
   
-## Teck Stack  
+## Tech Stack  
 <img src="https://img.shields.io/badge/Java-1572B6?style=flat-square&logo=&logoColor=white">&nbsp;
 <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white">&nbsp;
 <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black"/></a>&nbsp;
