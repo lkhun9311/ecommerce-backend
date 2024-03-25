@@ -1,6 +1,6 @@
 package com.ecommerce.store.domain.store.controller.model;
 
-import com.ecommerce.store.entity.enums.StoreCategory;
+import com.ecommerce.common.model.enums.StoreCategory;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,8 +11,7 @@ import javax.validation.constraints.NotNull;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class StoreRegisterRequest {
-
+public class StoreCreateRequest {
     @NotBlank
     private String name;
 
@@ -27,4 +26,7 @@ public class StoreRegisterRequest {
 
     @NotBlank
     private String phoneNumber;
+
+    @NotBlank
+    private Boolean isDoubleChecked;
 }

@@ -1,76 +1,71 @@
 package com.ecommerce.store.domain.store.service;
 
-import com.ecommerce.store.common.error.ErrorCode;
-import com.ecommerce.store.common.exception.ApiException;
+import com.ecommerce.common.model.enums.StoreCategory;
+import com.ecommerce.store.domain.store.controller.model.StoreCreateRequest;
+import com.ecommerce.store.domain.store.controller.model.StoreDeleteRequest;
+import com.ecommerce.store.domain.store.controller.model.StoreUpdateRequest;
 import com.ecommerce.store.entity.StoreEntity;
-import com.ecommerce.store.entity.enums.StoreCategory;
-import com.ecommerce.store.entity.enums.StoreStatus;
-import com.ecommerce.store.repository.StoreRepository;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
-@RequiredArgsConstructor
-@Service
-public class StoreService {
-
-    private final StoreRepository storeRepository;
+public interface StoreService {
+    /**
+     * 상점 생성
+     *
+     * @param request 상점 생성 요청 객체
+     * @return 생성된 상점의 식별자
+     */
+    String createStore(StoreCreateRequest request);
 
     /**
-     * 지정된 스토어 ID로 유효한 스토어 엔터티를 가져오는 메소드
+     * 상점 수정
      *
-     * @param storeId 가져올 스토어의 ID
-     * @return 스토어 엔터티
-     * @throws ApiException 스토어가 존재하지 않거나 유효하지 않은 경우 발생하는 예외
+     * @param request 상점 수정 요청 객체
+     * @return 수정된 상점의 식별자
      */
-    public StoreEntity getStoreWithThrow(Long storeId) {
-        Optional<StoreEntity> storeEntity = storeRepository.findFirstByIdAndStatusOrderByIdDesc(
-                storeId,
-                StoreStatus.REGISTERED
-        );
-        return storeEntity.orElseThrow(() -> new ApiException(ErrorCode.NULL_POINT_ERROR));
-    }
+    String updateStore(StoreUpdateRequest request);
 
     /**
-     * 주어진 스토어 엔터티를 등록하는 메소드
+     * 상점 삭제
      *
-     * @param storeEntity 등록할 스토어 엔터티
-     * @return 등록된 스토어 엔터티
-     * @throws ApiException 스토어 엔터티가 null인 경우 발생하는 예외
+     * @param request 상점 삭제 요청 객체
+     * @return 삭제된 상점의 식별자
      */
-    public StoreEntity register(StoreEntity storeEntity) {
-        return Optional.ofNullable(storeEntity)
-                .map(it -> {
-                    it.setStar(0);
-                    it.setStatus(StoreStatus.REGISTERED);
-                    it.setRegisteredAt(LocalDateTime.now());
-                    return storeRepository.save(it);
-                })
-                .orElseThrow(() -> new ApiException(ErrorCode.NULL_POINT_ERROR));
-    }
+    String deleteStore(StoreDeleteRequest request);
 
     /**
-     * 지정된 카테고리로 스토어를 검색하는 메소드
+     * 상점 이름의 중복 확인
      *
-     * @param storeCategory 검색할 스토어 카테고리
-     * @return 검색된 스토어 엔터티 리스트
+     * @param name 중복 확인할 상점의 이름
+     * @return 중복 여부를 나타내는 불리언 값
      */
-    public List<StoreEntity> searchByCategory(StoreCategory storeCategory) {
-        return storeRepository.findAllByStatusAndCategoryOrderByStarDesc(
-                StoreStatus.REGISTERED,
-                storeCategory
-        );
-    }
+    Boolean doubleCheckStore(String name);
 
     /**
-     * 모든 유효한 스토어를 검색하는 메소드
+     * 특정 카테고리의 상점 목록 조회
      *
-     * @return 검색된 스토어 엔터티 리스트
+     * @param category 조회할 상점 카테고리
+     * @return 조회된 상점 목록
      */
-    public List<StoreEntity> searchAll() {
-        return storeRepository.findAllByStatusOrderByIdDesc(StoreStatus.REGISTERED);
-    }
+    List<StoreEntity> getStoreByCategory(StoreCategory category);
+
+    /**
+     * 상점 모델 재설정
+     */
+    void resetStore();
+
+    /**
+     * 상점 ID를 기준으로 상점 조회
+     *
+     * @param storeId 조회할 상점의 식별자
+     * @return 조회된 상점 엔터티
+     */
+    StoreEntity getStoreWithThrow(String storeId);
+
+    /**
+     * 모든 상점 조회
+     *
+     * @return 조회된 모든 상점 목록
+     */
+    List<StoreEntity> searchAll();
 }

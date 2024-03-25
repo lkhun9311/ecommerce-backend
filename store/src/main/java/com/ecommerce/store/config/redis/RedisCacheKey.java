@@ -4,6 +4,7 @@ package com.ecommerce.store.config.redis;
 public class RedisCacheKey {
 
     private RedisCacheKey() {}
-    public static final String STORE_REGISTER = "StoreRegister";
-    public static final String STORE_SEARCH_CATEGORY = "StoreSearchCategory";
+    public static final String STORE_CATEGORY = "StoreCategory";
+    public static final String STORE_ID = "StoreId";
+    public static final String STORE = "Store";
 }

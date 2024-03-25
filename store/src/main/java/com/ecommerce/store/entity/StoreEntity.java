@@ -1,12 +1,8 @@
 package com.ecommerce.store.entity;
 
-import com.ecommerce.store.entity.enums.StoreCategory;
-import com.ecommerce.store.entity.enums.StoreStatus;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
-import lombok.experimental.SuperBuilder;
+import com.ecommerce.common.model.enums.StoreCategory;
+import com.ecommerce.common.model.enums.StoreStatus;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -14,11 +10,14 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "store")
 @Data // 클래스 내의 필드에 대한 getter, setter, toString, equals, hashCode 메서드 자동 생성
-@EqualsAndHashCode(callSuper = true) // 상속한 부모(BaseEntity)의 필드도 equals와 hashCode에서 고려
+@EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
-@SuperBuilder
-public class StoreEntity extends BaseEntity {
+@Builder
+public class StoreEntity {
+    @Id
+    @Column(length = 100, nullable = false)
+    private String storeId;
 
     @Column(length = 100, nullable = false)
     private String name;
@@ -34,13 +33,16 @@ public class StoreEntity extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private StoreCategory category;
 
-    private double star; // primitive double 기본적으로 0 셋팅
+    private double star; // primitive double, 기본적으로 0을 셋팅
 
     @Column(length = 200, nullable = false)
     private String thumbnailUrl;
 
     @Column(length = 20)
     private String phoneNumber;
+
+    @Column(nullable = false)
+    private Boolean isDoubleChecked;
 
     private LocalDateTime registeredAt;
 

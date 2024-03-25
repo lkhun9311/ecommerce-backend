@@ -54,13 +54,17 @@ public class RedisConfig {
 
         Map<String, RedisCacheConfiguration> customCacheConfig = new HashMap<>(); // 사용자 정의 캐시 설정
 
-        // StoreRegister 캐시 TTL 설정
-        customCacheConfig.put(RedisCacheKey.STORE_REGISTER, defaultCacheConfig
-                .entryTtl(Duration.ofSeconds(RedisCacheTtl.STORE_REGISTER_EXPIRE_SEC))); // 사용자 정의 캐시 TTL 설정
+        // StoreCategory 캐시 TTL 설정
+        customCacheConfig.put(RedisCacheKey.STORE_CATEGORY, defaultCacheConfig
+                .entryTtl(Duration.ofSeconds(RedisCacheTtl.STORE_CATEGORY_EXPIRE_SEC))); // 사용자 정의 캐시 TTL 설정
 
-        // StoreSearchCategory 캐시 TTL 설정
-        customCacheConfig.put(RedisCacheKey.STORE_SEARCH_CATEGORY, defaultCacheConfig
-                .entryTtl(Duration.ofSeconds(RedisCacheTtl.STORE_SEARCH_CATEGORY_EXPIRE_SEC))); // 사용자 정의 캐시 TTL 설정
+        // StoreId 캐시 TTL 설정
+        customCacheConfig.put(RedisCacheKey.STORE_ID, defaultCacheConfig
+                .entryTtl(Duration.ofSeconds(RedisCacheTtl.STORE_ID_EXPIRE_SEC))); // 사용자 정의 캐시 TTL 설정
+
+        // Store 캐시 TTL 설정
+        customCacheConfig.put(RedisCacheKey.STORE, defaultCacheConfig
+                .entryTtl(Duration.ofSeconds(RedisCacheTtl.STORE_EXPIRE_SEC))); // 사용자 정의 캐시 TTL 설정
 
         // Redis 캐시 관리자 설정
         return RedisCacheManager

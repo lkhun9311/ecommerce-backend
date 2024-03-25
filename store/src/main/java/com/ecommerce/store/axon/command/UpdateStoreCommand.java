@@ -1,31 +1,28 @@
-package com.ecommerce.store.domain.store.controller.model;
+package com.ecommerce.store.axon.command;
 
 import com.ecommerce.common.model.enums.StoreCategory;
 import com.ecommerce.common.model.enums.StoreStatus;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
+import org.axonframework.modelling.command.TargetAggregateIdentifier;
 
-@Data
+import java.time.LocalDateTime;
+
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
-public class StoreResponse {
-
-    private String id;
-
+@Getter
+@ToString
+public class UpdateStoreCommand {
+    @TargetAggregateIdentifier
+    private String storeId;
     private String name;
-
     private String address;
-
-    private StoreStatus status;
-
     private StoreCategory category;
-
     private double star;
-
     private String thumbnailUrl;
-
     private String phoneNumber;
+    private Boolean isDoubleChecked;
+    private LocalDateTime updatedAt;
 }
