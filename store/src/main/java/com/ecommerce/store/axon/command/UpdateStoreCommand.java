@@ -1,7 +1,6 @@
 package com.ecommerce.store.axon.command;
 
 import com.ecommerce.common.model.enums.StoreCategory;
-import com.ecommerce.common.model.enums.StoreStatus;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
