@@ -1,4 +1,4 @@
-package com.ecommerce.common.model;
+package com.ecommerce.common.model.storeproduct;
 
 import com.ecommerce.common.model.enums.StoreProductStatus;
 import lombok.AllArgsConstructor;
@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 public class StoreProductQueryResponse {
     private String id;
 
-    private Long storeId;
+    private String storeId;
 
     private String name;
 

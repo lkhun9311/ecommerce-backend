@@ -1,4 +1,4 @@
-package com.ecommerce.common.axon.event;
+package com.ecommerce.common.axon.event.storeproduct;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

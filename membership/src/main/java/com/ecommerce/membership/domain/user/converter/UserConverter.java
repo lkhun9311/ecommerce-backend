@@ -1,9 +1,10 @@
 package com.ecommerce.membership.domain.user.converter;
 
+import com.ecommerce.common.axon.event.membership.UserCreatedEvent;
 import com.ecommerce.membership.common.annotation.Converter;
 import com.ecommerce.membership.common.error.ErrorCode;
 import com.ecommerce.membership.common.exception.ApiException;
-import com.ecommerce.membership.domain.user.controller.model.UserRegisterRequest;
+import com.ecommerce.membership.domain.user.controller.model.UserCreateRequest;
 import com.ecommerce.membership.domain.user.controller.model.UserResponse;
 import com.ecommerce.membership.entity.UserEntity;
 import lombok.RequiredArgsConstructor;
@@ -15,29 +16,33 @@ import java.util.Optional;
 public class UserConverter {
 
     /**
-     * UserRegisterRequest를 UserEntity로 변환하는 메소드
+     * UserCreatedEvent를 UserEntity로 변환
      *
-     * @param request 회원가입 요청 정보
+     * @param event 회원가입할 사용자 정보를 담은 이벤트 객체
      * @return 회원가입을 위한 UserEntity
-     * @throws ApiException UserRegisterRequest가 null인 경우 예외 발생
+     * @throws ApiException UserCreatedEvent가 null인 경우 예외 발생
      */
-    public UserEntity toEntity(UserRegisterRequest request) {
+    public UserEntity toEntity(UserCreatedEvent event) {
 
-        return Optional.ofNullable(request)
+        return Optional.ofNullable(event)
                 .map(it ->
                         // to entity
                         UserEntity.builder()
+                                .userId(it.getUserId())
                                 .name(it.getName())
                                 .email(it.getEmail())
                                 .password(it.getPassword())
                                 .address(it.getAddress())
+                                .thumbnailUrl(it.getThumbnailUrl())
+                                .phoneNumber(it.getPhoneNumber())
+                                .isDoubleChecked(it.getIsDoubleChecked())
                                 .build()
                 )
                 .orElseThrow(() -> new ApiException(ErrorCode.NULL_POINT_ERROR, "UserRegisterRequest Null"));
     }
 
     /**
-     * UserEntity를 UserResponse로 변환하는 메소드
+     * UserEntity를 UserResponse로 변환
      *
      * @param newEntity 회원가입 또는 조회된 UserEntity
      * @return UserResponse
@@ -49,11 +54,14 @@ public class UserConverter {
                 .map(it ->
                         // to response
                         UserResponse.builder()
-                                .id(it.getId())
+                                .userId(it.getUserId())
                                 .name(it.getName())
                                 .email(it.getEmail())
                                 .status(it.getStatus())
                                 .address(it.getAddress())
+                                .thumbnailUrl(it.getThumbnailUrl())
+                                .phoneNumber(it.getPhoneNumber())
+                                .isDoubleChecked(it.getIsDoubleChecked())
                                 .registeredAt(it.getRegisteredAt())
                                 .unregisteredAt(it.getUnregisteredAt())
                                 .lastLoginAt(it.getLastLoginAt())

@@ -1,6 +1,6 @@
-package com.ecommerce.membership.domain.user.model;
+package com.ecommerce.common.model.user;
 
-import com.ecommerce.membership.entity.enums.UserStatus;
+import com.ecommerce.common.model.enums.UserStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,24 +13,17 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Builder
 public class User {
-
-    private Long id;
-
+    private String userId;
     private String name;
-
     private String email;
-
     private String password;
-
     private UserStatus status;
-
     private String address;
-
+    private String thumbnailUrl;
+    private String phoneNumber;
+    private Boolean isDoubleChecked;
     private LocalDateTime registeredAt;
-
     private LocalDateTime unregisteredAt;
-
     private LocalDateTime lastLoginAt;
-
     private LocalDateTime updatedAt;
 }

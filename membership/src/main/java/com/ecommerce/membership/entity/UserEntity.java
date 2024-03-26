@@ -1,11 +1,7 @@
 package com.ecommerce.membership.entity;
 
-import com.ecommerce.membership.entity.enums.UserStatus;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
-import lombok.experimental.SuperBuilder;
+import com.ecommerce.common.model.enums.UserStatus;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -13,11 +9,14 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "user")
 @Data
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
-@SuperBuilder
-public class UserEntity extends BaseEntity {
+@Builder
+public class UserEntity {
+    @Id
+    @Column(length = 100, nullable = false)
+    private String userId;
 
     @Column(length = 50, nullable = false)
     private String name;
@@ -34,6 +33,15 @@ public class UserEntity extends BaseEntity {
 
     @Column(length = 150, nullable = false)
     private String address;
+
+    @Column(length = 200, nullable = false)
+    private String thumbnailUrl;
+
+    @Column(length = 20)
+    private String phoneNumber;
+
+    @Column(nullable = false)
+    private Boolean isDoubleChecked;
 
     private LocalDateTime registeredAt;
 

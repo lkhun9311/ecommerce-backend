@@ -32,7 +32,6 @@ public class RouteStoreAdminConfig {
                                         filterSpec.filter(servicePublicApiFilter.apply(new ServicePublicApiFilter.Config())) // 필터 적용
                                                 .rewritePath("/store-admin-api(?<segment>/?.*)", "${segment}") // Public API 경로 재작성
                                 )
-//                                .uri("http://localhost:8080") // 라우팅할 URI 정의
                                 .uri(storeAdminServiceUrl) // 라우팅할 URI 정의
                 )
                 .build();
@@ -51,7 +50,6 @@ public class RouteStoreAdminConfig {
                                         filterSpec.filter(servicePublicApiFilter.apply(new ServicePublicApiFilter.Config())) // 필터 적용
                                                 .rewritePath("/store-admin-api(?<segment>/?.*)", "${segment}") // Public API 경로 재작성
                                 )
-//                                .uri("http://localhost:8080") // 라우팅할 URI 정의
                                 .uri(storeAdminServiceUrl) // 라우팅할 URI 정의
                 )
                 .build();

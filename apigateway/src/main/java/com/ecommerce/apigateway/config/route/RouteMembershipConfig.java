@@ -35,7 +35,6 @@ public class RouteMembershipConfig {
                                         filterSpec.filter(servicePublicApiFilter.apply(new ServicePublicApiFilter.Config())) // 필터 적용
                                                 .rewritePath("/membership-api(?<segment>/?.*)", "${segment}") // Public API 경로 재작성
                                 )
-//                                .uri("http://localhost:8081") // 라우팅할 URI 정의
                                 .uri(membershipServiceUrl) // 라우팅할 URI 정의
                 )
                 .build();
@@ -54,7 +53,6 @@ public class RouteMembershipConfig {
                                         filterSpec.filter(servicePrivateApiFilter.apply(new ServicePrivateApiFilter.Config())) // 필터 적용
                                                 .rewritePath("/membership-api(?<segment>/?.*)", "${segment}") // Private API 경로 재작성
                                 )
-//                                .uri("http://localhost:8081") // 라우팅할 URI 정의
                                 .uri(membershipServiceUrl) // 라우팅할 URI 정의
                 )
                 .build();

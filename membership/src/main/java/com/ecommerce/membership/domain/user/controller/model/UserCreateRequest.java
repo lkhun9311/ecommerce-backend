@@ -10,8 +10,7 @@ import javax.validation.constraints.NotBlank;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserRegisterRequest {
-
+public class UserCreateRequest {
     @NotBlank
     private String name;
 
@@ -20,8 +19,17 @@ public class UserRegisterRequest {
     private String email;
 
     @NotBlank
+    private String password;
+
+    @NotBlank
     private String address;
 
     @NotBlank
-    private String password;
+    private String thumbnailUrl;
+
+    @NotBlank
+    private String phoneNumber;
+
+    @NotBlank
+    private Boolean isDoubleChecked;
 }

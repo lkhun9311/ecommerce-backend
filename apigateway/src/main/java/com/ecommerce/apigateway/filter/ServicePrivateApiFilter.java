@@ -74,13 +74,6 @@ public class ServicePrivateApiFilter extends AbstractGatewayFilterFactory<Servic
             log.info("[Service Private API Filter] authorization token : {}", token);
 
             // 2. 회원 서비스에서 JWT 토큰 유효성 검사
-//            String membershipApiUrl = UriComponentsBuilder
-//                    .fromUriString("http://localhost")
-//                    .port(8081)
-//                    .path("/validation-api/token/validation")
-//                    .build()
-//                    .encode()
-//                    .toUriString();
             String membershipApiUrl = UriComponentsBuilder
                     .fromUriString("http://membership")
                     .port(8080)

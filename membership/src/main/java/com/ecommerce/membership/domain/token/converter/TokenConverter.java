@@ -54,7 +54,7 @@ public class TokenConverter {
      */
     public UserClaim toClaim(UserEntity userEntity) {
         return UserClaim.builder()
-                .userId(userEntity.getId())
+                .userId(userEntity.getUserId())
                 .name(userEntity.getName())
                 .email(userEntity.getEmail())
                 .status(userEntity.getStatus())

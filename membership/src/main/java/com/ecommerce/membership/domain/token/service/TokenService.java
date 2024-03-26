@@ -6,7 +6,7 @@ import com.ecommerce.membership.domain.token.controller.model.UserClaim;
 import com.ecommerce.membership.domain.token.ifs.TokenHelperIfs;
 import com.ecommerce.membership.domain.token.model.TokenDto;
 import com.ecommerce.membership.domain.user.model.UserDto;
-import com.ecommerce.membership.entity.enums.UserStatus;
+import com.ecommerce.common.model.enums.UserStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -76,7 +76,7 @@ public class TokenService {
         });
 
         return UserDto.builder()
-                .userId(Long.parseLong(userIdObject.toString()))
+                .userId(userIdObject.toString())
                 .name(map.get(USER_NAME).toString())
                 .email(map.get(USER_EMAIL).toString())
                 .status(UserStatus.valueOf(map.get(USER_STATUS).toString()))

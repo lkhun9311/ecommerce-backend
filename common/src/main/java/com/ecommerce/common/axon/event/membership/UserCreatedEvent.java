@@ -1,28 +1,24 @@
-package com.ecommerce.membership.domain.user.controller.model;
+package com.ecommerce.common.axon.event.membership;
 
-import com.ecommerce.common.model.enums.UserStatus;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.time.LocalDateTime;
 
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
-public class UserResponse {
+@Getter
+@ToString
+public class UserCreatedEvent {
     private String userId;
     private String name;
     private String email;
-    private UserStatus status;
+    private String password;
     private String address;
     private String thumbnailUrl;
     private String phoneNumber;
     private Boolean isDoubleChecked;
     private LocalDateTime registeredAt;
-    private LocalDateTime unregisteredAt;
-    private LocalDateTime lastLoginAt;
-    private LocalDateTime updatedAt;
 }

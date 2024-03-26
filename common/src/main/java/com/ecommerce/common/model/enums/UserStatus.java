@@ -1,4 +1,4 @@
-package com.ecommerce.membership.entity.enums;
+package com.ecommerce.common.model.enums;
 
 import lombok.AllArgsConstructor;
 

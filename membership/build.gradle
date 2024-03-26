@@ -18,6 +18,10 @@ configurations {
     }
 }
 
+ext{
+    axonVersion = "4.8.0"
+}
+
 repositories {
     mavenCentral()
 }
@@ -32,7 +36,6 @@ dependencies {
     // jpa
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     runtimeOnly 'mysql:mysql-connector-java:8.0.29'
-//    implementation project(':db')
 
     // swagger
     // https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-ui
@@ -45,6 +48,13 @@ dependencies {
 
     // redis
     implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+
+    // axon framework
+    implementation group: 'org.axonframework', name: 'axon-spring-boot-starter', version: "$axonVersion"
+    implementation group: 'org.axonframework', name: 'axon-configuration', version: "$axonVersion"
+    implementation group: 'org.axonframework', name: 'axon-messaging', version: "$axonVersion"
+
+    implementation project(path: ':common')
 }
 
 test {

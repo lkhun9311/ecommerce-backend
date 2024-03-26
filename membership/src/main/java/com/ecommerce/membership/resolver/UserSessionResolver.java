@@ -3,8 +3,8 @@ package com.ecommerce.membership.resolver;
 import com.ecommerce.membership.common.annotation.UserSession;
 import com.ecommerce.membership.common.error.UserErrorCode;
 import com.ecommerce.membership.common.exception.ApiException;
-import com.ecommerce.membership.domain.user.model.User;
-import com.ecommerce.membership.entity.enums.UserStatus;
+import com.ecommerce.common.model.user.User;
+import com.ecommerce.common.model.enums.UserStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.MethodParameter;
 import org.springframework.stereotype.Component;
@@ -54,7 +54,7 @@ public class UserSessionResolver implements HandlerMethodArgumentResolver {
 
                 // User(사용자) 정보 셋팅
                 return User.builder()
-                        .id(Long.parseLong(userId.toString()))
+                        .userId(userId.toString())
                         .name(Objects.nonNull(name) ? name.toString() : null)
                         .email(Objects.nonNull(email) ? email.toString() : null)
                         .status(Objects.nonNull(status) ? UserStatus.valueOf(status.toString()) : null)

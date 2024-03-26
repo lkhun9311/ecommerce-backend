@@ -34,7 +34,7 @@ public class TokenBusiness {
      * @return TokenResponse 객체
      * @throws ApiException userEntity가 null일 경우 발생하는 예외
      */
-    @Cacheable(cacheNames = "JwtToken", key = "#userEntity.id")
+    @Cacheable(cacheNames = "JwtToken", key = "#userEntity.userId")
     public TokenResponse issueToken(UserEntity userEntity) {
 
         return Optional.ofNullable(userEntity)

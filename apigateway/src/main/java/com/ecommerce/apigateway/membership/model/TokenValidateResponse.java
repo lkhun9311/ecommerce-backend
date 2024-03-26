@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class TokenValidateResponse {
 
-    private Long userId;
+    private String userId;
     private String name;
     private String email;
     private UserStatus status;
