@@ -1,8 +1,8 @@
 package com.ecommerce.product.axon.projection;
 
-import com.ecommerce.common.axon.event.StoreProductCreatedEvent;
-import com.ecommerce.common.axon.event.StoreProductDeletedEvent;
-import com.ecommerce.common.axon.event.StoreProductUpdatedEvent;
+import com.ecommerce.common.axon.event.storeproduct.StoreProductCreatedEvent;
+import com.ecommerce.common.axon.event.storeproduct.StoreProductDeletedEvent;
+import com.ecommerce.common.axon.event.storeproduct.StoreProductUpdatedEvent;
 import com.ecommerce.common.model.enums.StoreProductStatus;
 import com.ecommerce.product.domain.storeproduct.converter.StoreProductConverter;
 import com.ecommerce.product.entity.StoreProductEntity;

@@ -186,6 +186,14 @@ public class StoreServiceImpl implements StoreService {
         return storeEntity.orElseThrow(() -> new ApiException(ErrorCode.NULL_POINT_ERROR));
     }
 
+    @Override
+    public Optional<StoreEntity> getStoreWithoutThrow(String storeId) {
+        return storeRepository.findFirstByStoreIdAndStatusOrderByStoreIdDesc(
+                storeId,
+                StoreStatus.REGISTERED
+        );
+    }
+
     /**
      * 모든 등록된 상점 반환
      *

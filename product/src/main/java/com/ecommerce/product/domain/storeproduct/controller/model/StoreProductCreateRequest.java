@@ -13,7 +13,7 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 public class StoreProductCreateRequest {
     @NotNull
-    private Long storeId;
+    private String storeId;
 
     @NotBlank
     private String name;

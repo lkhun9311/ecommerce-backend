@@ -11,13 +11,13 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
-public interface StoreProductRepository extends JpaRepository<StoreProductEntity, Long> {
+public interface StoreProductRepository extends JpaRepository<StoreProductEntity, String> {
 
     // 유효한 상품 가져오기
     Optional<StoreProductEntity> findFirstByStoreProductIdAndStatusOrderByStoreProductIdDesc(String storeProductId, StoreProductStatus status);
 
     // 특정 상점의 상품 전부 가져오기
-    List<StoreProductEntity> findAllByStoreIdAndStatusOrderByStoreIdDesc(Long storeId, StoreProductStatus status);
+    List<StoreProductEntity> findAllByStoreIdAndStatusOrderByStoreIdDesc(String storeId, StoreProductStatus status);
 
     @Modifying
     @Query("UPDATE StoreProductEntity s " +
@@ -26,7 +26,7 @@ public interface StoreProductRepository extends JpaRepository<StoreProductEntity
     )
     void updateStoreProductByEvent(
             @Param("storeProductId") String storeProductId,
-            @Param("storeId") Long storeId,
+            @Param("storeId") String storeId,
             @Param("name") String name,
             @Param("amount") BigDecimal amount,
             @Param("thumbnailUrl") String thumbnailUrl

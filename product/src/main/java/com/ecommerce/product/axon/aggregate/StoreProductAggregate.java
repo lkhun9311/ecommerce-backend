@@ -1,8 +1,8 @@
 package com.ecommerce.product.axon.aggregate;
 
-import com.ecommerce.common.axon.event.StoreProductCreatedEvent;
-import com.ecommerce.common.axon.event.StoreProductDeletedEvent;
-import com.ecommerce.common.axon.event.StoreProductUpdatedEvent;
+import com.ecommerce.common.axon.event.storeproduct.StoreProductCreatedEvent;
+import com.ecommerce.common.axon.event.storeproduct.StoreProductDeletedEvent;
+import com.ecommerce.common.axon.event.storeproduct.StoreProductUpdatedEvent;
 import com.ecommerce.common.model.enums.StoreProductStatus;
 import com.ecommerce.product.axon.command.CreateStoreProductCommand;
 import com.ecommerce.product.axon.command.DeleteStoreProductCommand;
@@ -31,7 +31,7 @@ import static org.axonframework.modelling.command.AggregateLifecycle.apply;
 public class StoreProductAggregate {
     @AggregateIdentifier
     private String storeProductId;
-    private Long storeId;
+    private String storeId;
     private String name;
     private BigDecimal amount;
     private StoreProductStatus status;

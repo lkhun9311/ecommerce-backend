@@ -1,7 +1,7 @@
 package com.ecommerce.product.axon.projection;
 
-import com.ecommerce.common.axon.query.StoreProductQuery;
-import com.ecommerce.common.model.StoreProductQueryResponse;
+import com.ecommerce.common.axon.query.storeproduct.StoreProductQuery;
+import com.ecommerce.common.model.storeproduct.StoreProductQueryResponse;
 import com.ecommerce.product.domain.storeproduct.converter.StoreProductConverter;
 import com.ecommerce.product.domain.storeproduct.service.StoreProductService;
 import com.ecommerce.product.entity.StoreProductEntity;

@@ -1,12 +1,12 @@
 package com.ecommerce.store.domain.store.controller;
 
+import com.ecommerce.common.model.user.User;
 import com.ecommerce.store.common.annotation.UserSession;
 import com.ecommerce.store.common.api.Api;
 import com.ecommerce.store.domain.store.controller.model.StoreCreateRequest;
 import com.ecommerce.store.domain.store.business.StoreBusiness;
 import com.ecommerce.store.domain.store.controller.model.StoreDeleteRequest;
 import com.ecommerce.store.domain.store.controller.model.StoreUpdateRequest;
-import com.ecommerce.store.resolver.model.User;
 import io.swagger.v3.oas.annotations.Parameter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

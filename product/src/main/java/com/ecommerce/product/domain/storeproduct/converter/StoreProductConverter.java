@@ -1,17 +1,15 @@
 package com.ecommerce.product.domain.storeproduct.converter;
 
-import com.ecommerce.common.axon.event.StoreProductCreatedEvent;
-import com.ecommerce.common.model.StoreProductQueryResponse;
+import com.ecommerce.common.axon.event.storeproduct.StoreProductCreatedEvent;
+import com.ecommerce.common.model.storeproduct.StoreProductQueryResponse;
 import com.ecommerce.product.common.annotation.Converter;
 import com.ecommerce.product.common.error.ErrorCode;
 import com.ecommerce.product.common.exception.ApiException;
-import com.ecommerce.product.domain.storeproduct.controller.model.StoreProductCreateRequest;
 import com.ecommerce.product.domain.storeproduct.controller.model.StoreProductResponse;
 import com.ecommerce.product.entity.StoreProductEntity;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
 @Converter

@@ -16,7 +16,7 @@ public class StoreProductResponse {
 
     private String id;
 
-    private Long storeId;
+    private String storeId;
 
     private String name;
 

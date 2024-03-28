@@ -1,10 +1,10 @@
 package com.ecommerce.store.resolver;
 
+import com.ecommerce.common.model.enums.UserStatus;
+import com.ecommerce.common.model.user.User;
 import com.ecommerce.store.common.annotation.UserSession;
 import com.ecommerce.store.common.error.UserErrorCode;
 import com.ecommerce.store.common.exception.ApiException;
-import com.ecommerce.store.entity.enums.UserStatus;
-import com.ecommerce.store.resolver.model.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.MethodParameter;
 import org.springframework.stereotype.Component;
@@ -54,7 +54,7 @@ public class UserSessionResolver implements HandlerMethodArgumentResolver {
 
                 // User(사용자) 정보 셋팅
                 return User.builder()
-                        .id(Long.parseLong(userId.toString()))
+                        .userId(userId.toString())
                         .name(Objects.nonNull(name) ? name.toString() : null)
                         .email(Objects.nonNull(email) ? email.toString() : null)
                         .status(Objects.nonNull(status) ? UserStatus.valueOf(status.toString()) : null)

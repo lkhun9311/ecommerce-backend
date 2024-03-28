@@ -23,7 +23,7 @@ public class StoreProductOpenApiController {
      */
     @GetMapping("/search")
     public Api<List<StoreProductResponse>> search(
-            @RequestParam Long storeId
+            @RequestParam String storeId
     ) {
         List<StoreProductResponse> response = storeProductBusiness.search(storeId);
         return Api.ok(response);

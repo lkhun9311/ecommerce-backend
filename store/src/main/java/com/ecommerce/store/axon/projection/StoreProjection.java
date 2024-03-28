@@ -24,7 +24,7 @@ public class StoreProjection {
     private final StoreConverter storeConverter;
 
     @ResetHandler
-    private void resetStoreProductModel() {
+    private void resetStoreModel() {
         log.info("reset Store Model triggered");
         storeRepository.deleteAll();
     }

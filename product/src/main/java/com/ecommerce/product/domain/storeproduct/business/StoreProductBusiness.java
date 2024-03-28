@@ -1,5 +1,6 @@
 package com.ecommerce.product.domain.storeproduct.business;
 
+import com.ecommerce.common.model.user.User;
 import com.ecommerce.product.common.annotation.Business;
 import com.ecommerce.product.common.error.UserErrorCode;
 import com.ecommerce.product.common.exception.ApiException;
@@ -10,12 +11,10 @@ import com.ecommerce.product.domain.storeproduct.controller.model.StoreProductUp
 import com.ecommerce.product.domain.storeproduct.converter.StoreProductConverter;
 import com.ecommerce.product.domain.storeproduct.service.StoreProductService;
 import com.ecommerce.product.entity.StoreProductEntity;
-import com.ecommerce.product.resolver.model.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.Cacheable;
 
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
@@ -26,7 +25,7 @@ public class StoreProductBusiness {
     private final StoreProductConverter storeProductConverter;
 
     public String createStoreProduct(StoreProductCreateRequest request, User user) {
-        if (user.getId() == null) {
+        if (user.getUserId() == null) {
             throw new ApiException(UserErrorCode.USER_SESSTION_NOT_FOUND);
         }
 
@@ -34,7 +33,7 @@ public class StoreProductBusiness {
     }
 
     public String updateStoreProduct(StoreProductUpdateRequest request, User user) {
-        if (user.getId() == null) {
+        if (user.getUserId() == null) {
             throw new ApiException(UserErrorCode.USER_SESSTION_NOT_FOUND);
         }
 
@@ -42,7 +41,7 @@ public class StoreProductBusiness {
     }
 
     public String deleteStoreProduct(StoreProductDeleteRequest request, User user) {
-        if (user.getId() == null) {
+        if (user.getUserId() == null) {
             throw new ApiException(UserErrorCode.USER_SESSTION_NOT_FOUND);
         }
 
@@ -56,7 +55,7 @@ public class StoreProductBusiness {
      * @return 검색된 상품 정보를 담은 응답 객체 리스트
      */
     @Cacheable(cacheNames = "StoreProduct", key = "#storeId")
-    public List<StoreProductResponse> search(Long storeId) {
+    public List<StoreProductResponse> search(String storeId) {
         List<StoreProductEntity> storeProductList = storeProductService.getStoreProductByStoreId(storeId);
 
         return storeProductList.stream()

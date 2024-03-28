@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 public class UpdateStoreProductCommand {
     @TargetAggregateIdentifier
     private String storeProductId;
-    private Long storeId;
+    private String storeId;
     private String name;
     private BigDecimal amount;
     private String thumbnailUrl;

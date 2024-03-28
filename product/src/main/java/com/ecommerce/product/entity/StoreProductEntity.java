@@ -1,10 +1,7 @@
 package com.ecommerce.product.entity;
 
 import com.ecommerce.common.model.enums.StoreProductStatus;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -12,16 +9,17 @@ import java.math.BigDecimal;
 @Entity
 @Table(name = "store_product")
 @Data
+@EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class StoreProductEntity {
     @Id
-    @Column(nullable = false)
+    @Column(length = 100, nullable = false)
     private String storeProductId;
 
-    @Column(nullable = false)
-    private Long storeId;
+    @Column(length = 100, nullable = false)
+    private String storeId;
 
     @Column(length = 100, nullable = false)
     private String name;

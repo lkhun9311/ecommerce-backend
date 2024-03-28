@@ -16,7 +16,7 @@ public class StoreProductUpdateRequest {
     private String storeProductId;
 
     @NotNull
-    private Long storeId;
+    private String storeId;
 
     @NotBlank
     private String name;

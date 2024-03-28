@@ -1,5 +1,6 @@
 package com.ecommerce.store.domain.store.business;
 
+import com.ecommerce.common.model.user.User;
 import com.ecommerce.store.common.annotation.Business;
 import com.ecommerce.store.common.error.UserErrorCode;
 import com.ecommerce.store.common.exception.ApiException;
@@ -11,7 +12,6 @@ import com.ecommerce.store.domain.store.service.StoreService;
 import com.ecommerce.store.domain.store.converter.StoreConverter;
 import com.ecommerce.store.entity.StoreEntity;
 import com.ecommerce.common.model.enums.StoreCategory;
-import com.ecommerce.store.resolver.model.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.Cacheable;
 
@@ -34,7 +34,7 @@ public class StoreBusiness {
      * @throws ApiException 사용자 세션을 찾을 수 없는 경우 발생하는 예외
      */
     public String createStore(StoreCreateRequest request, User user) {
-        if (user.getId() == null) {
+        if (user.getUserId() == null) {
             throw new ApiException(UserErrorCode.USER_SESSTION_NOT_FOUND);
         }
         return storeService.createStore(request);
@@ -49,7 +49,7 @@ public class StoreBusiness {
      * @throws ApiException 사용자 세션을 찾을 수 없는 경우 발생하는 예외
      */
     public String updateStore(StoreUpdateRequest request, User user) {
-        if (user.getId() == null) {
+        if (user.getUserId() == null) {
             throw new ApiException(UserErrorCode.USER_SESSTION_NOT_FOUND);
         }
         return storeService.updateStore(request);
@@ -64,7 +64,7 @@ public class StoreBusiness {
      * @throws ApiException 사용자 세션을 찾을 수 없는 경우 발생하는 예외
      */
     public String deleteStore(StoreDeleteRequest request, User user) {
-        if (user.getId() == null) {
+        if (user.getUserId() == null) {
             throw new ApiException(UserErrorCode.USER_SESSTION_NOT_FOUND);
         }
         return storeService.deleteStore(request);
@@ -79,7 +79,7 @@ public class StoreBusiness {
      * @throws ApiException 사용자 세션을 찾을 수 없는 경우 발생하는 예외
      */
     public Boolean doubleCheckStore(String name, User user) {
-        if (user.getId() == null) {
+        if (user.getUserId() == null) {
             throw new ApiException(UserErrorCode.USER_SESSTION_NOT_FOUND);
         }
         return storeService.doubleCheckStore(name);

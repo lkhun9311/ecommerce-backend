@@ -7,6 +7,7 @@ import com.ecommerce.store.domain.store.controller.model.StoreUpdateRequest;
 import com.ecommerce.store.entity.StoreEntity;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface StoreService {
     /**
@@ -61,6 +62,14 @@ public interface StoreService {
      * @return 조회된 상점 엔터티
      */
     StoreEntity getStoreWithThrow(String storeId);
+
+    /**
+     * 상점 ID를 기준으로 상점 조회
+     *
+     * @param storeId 조회할 상점의 식별자
+     * @return 조회된 상점 엔터티
+     */
+    Optional<StoreEntity> getStoreWithoutThrow(String storeId);
 
     /**
      * 모든 상점 조회
